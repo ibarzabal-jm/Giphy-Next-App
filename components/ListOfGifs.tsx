@@ -18,10 +18,10 @@ const ListOfGifs: React.FC<Props> = ({keyword}) => {
 
   return (
     <div>
-      <h4>{keyword}</h4>
+      <h3>{keyword}</h3>
       <div className="list">
         {gifs.map((gif) => (
-          <GifCard key={gif.id} />
+          <GifCard key={gif.id} image={gif} />
         ))}
       </div>
     </div>

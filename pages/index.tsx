@@ -1,6 +1,5 @@
 import type {NextPage} from "next";
 import Head from "next/head";
-import Image from "next/image";
 
 import ListOfGifs from "../components/ListOfGifs";
 import styles from "../styles/Home.module.css";
@@ -17,7 +16,7 @@ const Home: NextPage = () => {
       <main>
         <h1>Giphy Next App</h1>
 
-        <ListOfGifs keyword="tortuga" />
+        <ListOfGifs keyword="Messi" />
       </main>
     </div>
   );
