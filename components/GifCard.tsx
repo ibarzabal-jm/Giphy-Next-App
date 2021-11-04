@@ -10,12 +10,12 @@ interface Props {
 const GifCard: React.FC<Props> = ({image}) => {
   return (
     <div className="card">
-      <p>{image.title}</p>
       <Image
         alt={image.title}
-        height={image.images.downsized_large.height}
-        src={image.images.downsized_large.url}
-        width={image.images.downsized_large.width}
+        height={image.images.downsized_medium.height}
+        layout="responsive"
+        src={image.images.downsized_medium.url}
+        width={image.images.downsized_medium.width}
       />
     </div>
   );
