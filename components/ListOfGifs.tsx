@@ -1,21 +1,15 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 
-import {api} from "../api/api";
 import {Gif} from "../types/ApiResponse";
 
 import GifCard from "./GifCard";
 
 interface Props {
   keyword: string;
+  gifs: Gif[];
 }
 
-const ListOfGifs: React.FC<Props> = ({keyword}) => {
-  const [gifs, setGifs] = useState<Gif[] | []>([]);
-
-  useEffect(() => {
-    api.getListGif(keyword).then((gifs) => setGifs(gifs));
-  }, [keyword]);
-
+const ListOfGifs: React.FC<Props> = ({keyword, gifs}) => {
   return (
     <div>
       <h3>{keyword}</h3>
