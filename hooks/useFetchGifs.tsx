@@ -4,7 +4,7 @@ import {api} from "../api/api";
 import {Gif} from "../types/ApiResponse";
 
 export const useFetchGif = (keyword: string | number, limit = 10) => {
-  const [loading, setLoading] = useState<Boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const [gifs, setGifs] = useState<Gif[]>([]);
 
   useEffect(() => {

@@ -3,18 +3,16 @@ import Head from "next/head";
 import {useState} from "react";
 
 import ListOfGifs from "../components/ListOfGifs";
+import Search from "../components/Search";
+import {useFetchGif} from "../hooks/useFetchGifs";
 import styles from "../styles/Home.module.css";
+import {Gif} from "../types/ApiResponse";
+import {StatusFetch} from "../types/StatusFetch";
 
 const Home: NextPage = () => {
-  const [keyword, setKeyword] = useState("");
+  const [gifsSearched, setGifsSearched] = useState<StatusFetch[]>([]);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log(keyword);
-  };
-  const handleChange = ({target}: React.ChangeEvent<HTMLInputElement>) => {
-    setKeyword(target.value);
-  };
+  console.log(gifsSearched);
 
   return (
     <div className={styles.container}>
@@ -26,15 +24,16 @@ const Home: NextPage = () => {
 
       <main>
         <h1>Giphy Next App</h1>
-        <form onSubmit={handleSubmit}>
-          <input
-            placeholder="Searching Gif..."
-            type="text"
-            value={keyword}
-            onChange={handleChange}
-          />
-          <button type="submit">Buscar</button>
-        </form>
+        <Search setSearchs={setGifsSearched} />
+        {gifsSearched.map((listSearch) =>
+          listSearch.loading ? null : (
+            <ListOfGifs
+              key={listSearch.keyword}
+              gifs={listSearch.gifs}
+              keyword={listSearch.keyword}
+            />
+          ),
+        )}
       </main>
     </div>
   );
