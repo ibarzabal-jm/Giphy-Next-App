@@ -4,15 +4,16 @@ import {useState} from "react";
 
 import ListOfGifs from "../components/ListOfGifs";
 import Search from "../components/Search";
-import {useFetchGif} from "../hooks/useFetchGifs";
 import styles from "../styles/Home.module.css";
-import {Gif} from "../types/ApiResponse";
-import {StatusFetch} from "../types/StatusFetch";
+import {StatusSearch} from "../types/StatusSearch";
 
 const Home: NextPage = () => {
-  const [gifsSearched, setGifsSearched] = useState<StatusFetch[]>([]);
-
-  console.log(gifsSearched);
+  const [searchedGifs, setSearchedGifs] = useState<StatusSearch>({
+    loading: false,
+    gifs: [],
+    historySearch: [],
+    lastSearch: null,
+  });
 
   return (
     <div className={styles.container}>
@@ -24,15 +25,13 @@ const Home: NextPage = () => {
 
       <main>
         <h1>Giphy Next App</h1>
-        <Search setSearchs={setGifsSearched} />
-        {gifsSearched.map((listSearch) =>
-          listSearch.loading ? null : (
-            <ListOfGifs
-              key={listSearch.keyword}
-              gifs={listSearch.gifs}
-              keyword={listSearch.keyword}
-            />
-          ),
+        <Search setSearched={setSearchedGifs} />
+
+        {searchedGifs.gifs.length > 0 && (
+          <div>
+            {searchedGifs.loading && <div>Cargando..</div>}
+            <ListOfGifs gifs={searchedGifs.gifs} keyword={searchedGifs.lastSearch} />
+          </div>
         )}
       </main>
     </div>

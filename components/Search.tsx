@@ -1,27 +1,38 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 import {useFetchGif} from "../hooks/useFetchGifs";
-import {StatusFetch} from "../types/StatusFetch";
+import {StatusSearch} from "../types/StatusSearch";
 
 interface Props {
-  setSearchs: React.Dispatch<React.SetStateAction<StatusFetch[]>>;
+  setSearched: React.Dispatch<React.SetStateAction<StatusSearch>>;
 }
 
-const Search: React.FC<Props> = ({setSearchs}) => {
+const Search: React.FC<Props> = ({setSearched}) => {
   const [keyword, setKeyword] = useState<string>("");
-  const {loading: loadingLastGif, gifs} = useFetchGif(keyword);
+  const {loading, gifs: newGifs, execute} = useFetchGif(keyword, false);
 
   const handleChange = ({target}: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(target.value);
   };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // execute fetch
+    setSearched((prevState) => ({
+      ...prevState,
+      loading: true,
+    }));
+    execute();
   };
 
   useEffect(() => {
-    !loadingLastGif && setSearchs((prevGifs) => [{keyword: keyword, loading, gifs}, ...prevGifs]);
-  }, [loadingLastGif]);
+    setSearched((prevState) => ({
+      ...prevState,
+      lastSearch: keyword,
+      historySearch: [keyword, ...prevState.historySearch],
+      gifs: [...newGifs, ...prevState.gifs],
+      loading,
+    }));
+  }, [newGifs]);
 
   return (
     <form onSubmit={handleSubmit}>

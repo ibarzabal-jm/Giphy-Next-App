@@ -6,7 +6,7 @@ import styles from "../styles/ListGifs.module.scss";
 import GifCard from "./GifCard";
 
 interface Props {
-  keyword: string;
+  keyword: string | null;
   gifs: Gif[];
 }
 
