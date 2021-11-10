@@ -1,22 +1,32 @@
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 
 import {api} from "../api/api";
 import {Gif} from "../types/ApiResponse";
 
-export const useFetchGif = (keyword: string | number, limit = 10) => {
-  const [loading, setLoading] = useState<Boolean>(false);
+export const useFetchGif = (keyword: string, immediate = true, limit = 10) => {
+  const [status, setStatus] = useState<"idle" | "pending" | "resolved" | "rejected">("idle");
   const [gifs, setGifs] = useState<Gif[]>([]);
 
+  const execute = useCallback((keyword: string, limit = 10) => {
+    setStatus("pending");
+
+    return api.getListGif(keyword, limit).then(
+      (data) => {
+        setGifs(data);
+        setStatus("resolved");
+      },
+      (error) => {
+        console.log(error);
+        setStatus("rejected");
+      },
+    );
+  }, []);
+
   useEffect(() => {
-    let mounted = true;
+    if (immediate) {
+      execute(keyword, limit);
+    }
+  }, [execute, immediate, keyword, limit]);
 
-    setLoading(true);
-    api.getListGif(keyword, limit).then((arrayGif) => mounted && setGifs(arrayGif));
-
-    return () => {
-      mounted = false;
-    };
-  }, [keyword, limit]);
-
-  return {loading, gifs};
+  return {status, gifs, execute};
 };
