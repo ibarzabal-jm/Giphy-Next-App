@@ -1,33 +1,30 @@
 import React, {useEffect, useState} from "react";
 
 import {useFetchGif} from "../../hooks/useFetchGifs";
-import {Gif} from "../../types/ApiResponse";
-import {StatusSearch} from "../../types/StatusSearch";
-import ListOfGifs from "../ListOfGifs";
 
-import Search from "./Search";
+import LayoutSearchResults from "./LayoutSearchResults";
+import InputSearch from "./Search";
+import {Search} from "./types";
 
 const GifSearchComponent: React.FC = () => {
-  const [historySearch, setHistorySearch] = useState<string[]>([]);
-  const [gifsSearched, setGifsSearched] = useState<Gif[]>([]);
-  const {loading, gifs, execute} = useFetchGif("", false);
+  const [lastSearch, setLastSearch] = useState<string>("");
+  const [searched, setSearched] = useState<Search[]>([]);
+  const {status, gifs, execute} = useFetchGif("", false);
 
-  const handleSetHistory = (lastSearch: string) => {
-    setHistorySearch((prev) => [lastSearch, ...prev]);
+  const handleSearch = (lastSearch: string) => {
+    setLastSearch(lastSearch);
     execute(lastSearch);
   };
 
   useEffect(() => {
-    setGifsSearched((prev) => [...gifs, ...prev]);
-  }, [gifs]);
-
-  console.log(gifsSearched);
+    status === "resolved" && setSearched((prev) => [{keyword: lastSearch, gifs}, ...prev]);
+  }, [status]);
 
   return (
     <div>
-      <Search setKeyword={handleSetHistory} />
-      {loading && <p>Cargando...</p>}
-      <ListOfGifs gifs={gifsSearched} keyword={historySearch[0]} />
+      <InputSearch setKeyword={handleSearch} />
+      {status === "pending" && <p>Cargando...{lastSearch} </p>}
+      {searched.length > 0 && <LayoutSearchResults searchs={searched} separate={false} />}
     </div>
   );
 };

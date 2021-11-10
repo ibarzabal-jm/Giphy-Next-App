@@ -4,17 +4,22 @@ import {api} from "../api/api";
 import {Gif} from "../types/ApiResponse";
 
 export const useFetchGif = (keyword: string, immediate = true, limit = 10) => {
-  const [loading, setLoading] = useState<boolean>(false);
+  const [status, setStatus] = useState<"idle" | "pending" | "resolved" | "rejected">("idle");
   const [gifs, setGifs] = useState<Gif[]>([]);
 
-  const execute = useCallback(async (keyword: string, limit = 10) => {
-    setLoading(true);
-    console.log("holaa");
+  const execute = useCallback((keyword: string, limit = 10) => {
+    setStatus("pending");
 
-    const arrayGif = await api.getListGif(keyword, limit);
-
-    setGifs(arrayGif);
-    setLoading(false);
+    return api.getListGif(keyword, limit).then(
+      (data) => {
+        setGifs(data);
+        setStatus("resolved");
+      },
+      (error) => {
+        console.log(error);
+        setStatus("rejected");
+      },
+    );
   }, []);
 
   useEffect(() => {
@@ -23,5 +28,5 @@ export const useFetchGif = (keyword: string, immediate = true, limit = 10) => {
     }
   }, [execute, immediate, keyword, limit]);
 
-  return {loading, gifs, execute};
+  return {status, gifs, execute};
 };
