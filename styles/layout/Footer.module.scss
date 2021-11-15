@@ -1,0 +1,72 @@
+.footer {
+  background-color: #272727;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em;
+  color: white;
+  margin-top: auto;
+  
+    .text {
+      animation: text 4s ease infinite;
+      animation-fill-mode: forwards;
+      stroke-dasharray: 313;
+      stroke-dashoffset: 313;
+    }
+
+    .point {
+      animation: point 4s ease infinite;
+      animation-fill-mode: forwards;
+      stroke-dasharray: 26;
+      stroke-dashoffset: 26;
+    }
+
+    .dash {
+      animation: dash 4s ease infinite;
+      animation-fill-mode: forwards;
+      stroke-dasharray: 108;
+      stroke-dashoffset: 108;
+    }
+  
+}
+
+@keyframes text {
+  0% {
+    stroke-dashoffset: 313;
+  }
+  60% {
+    stroke-dashoffset: 0;
+  }
+  70% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes point {
+  0% {
+    stroke-dashoffset: 26;
+  }
+  60% {
+    stroke-dashoffset: 26;
+  }
+  70% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 108;
+  }
+  70% {
+    stroke-dashoffset: 108;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
