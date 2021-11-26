@@ -1,9 +1,9 @@
-import React, {useEffect} from "react";
+import React from "react";
 
-import {Gif} from "../types/ApiResponse";
-import styles from "../styles/ListGifs.module.scss";
+import {Gif} from "../../types/ApiResponse";
+import GifCard from "../GifCard";
 
-import GifCard from "./GifCard";
+import styles from "./ListGifs.module.scss";
 
 interface Props {
   keyword: string | null;

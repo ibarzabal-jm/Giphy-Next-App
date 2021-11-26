@@ -1,7 +1,7 @@
 import React from "react";
 import {GetServerSideProps, NextPage} from "next";
 
-import ListOfGifs from "../components/ListOfGifs";
+import ListOfGifs from "../components/ListOfGifs/ListOfGifs";
 import {api} from "../api/api";
 import {Gif} from "../types/ApiResponse";
 
