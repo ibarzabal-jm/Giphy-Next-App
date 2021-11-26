@@ -3,17 +3,26 @@ import React, {useEffect, useState} from "react";
 import {useFetchGif} from "../../hooks/useFetchGifs";
 
 import LayoutSearchResults from "./LayoutSearchResults";
-import InputSearch from "./Search";
+import SearchForm from "./SearchForm";
 import {Search} from "./types";
+
+interface Submit {
+  limit: number;
+  keyword: boolean;
+}
 
 const GifSearchComponent: React.FC = () => {
   const [lastSearch, setLastSearch] = useState<string>("");
   const [searched, setSearched] = useState<Search[]>([]);
-  const {status, gifs, execute} = useFetchGif("", false);
+  const [masonryToggle, setMasonryToggle] = useState<boolean>(false);
+  const {status, gifs, execute} = useFetchGif({
+    keyword: "",
+    immediate: false,
+  });
 
-  const handleSearch = (lastSearch: string) => {
+  const onSubmit = (lastSearch: string, limit: number) => {
     setLastSearch(lastSearch);
-    execute(lastSearch);
+    execute(lastSearch, limit);
   };
 
   useEffect(() => {
@@ -22,9 +31,12 @@ const GifSearchComponent: React.FC = () => {
 
   return (
     <div>
-      <InputSearch setKeyword={handleSearch} />
+      <SearchForm onSubmit={onSubmit} />
+      <button onClick={() => setMasonryToggle(!masonryToggle)}>
+        {masonryToggle ? "Separate" : "Masonry"}
+      </button>
       {status === "pending" && <p>Cargando...{lastSearch} </p>}
-      {searched.length > 0 && <LayoutSearchResults searchs={searched} separate={false} />}
+      {searched.length > 0 && <LayoutSearchResults searchs={searched} separate={masonryToggle} />}
     </div>
   );
 };

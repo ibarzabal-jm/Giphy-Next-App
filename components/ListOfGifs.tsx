@@ -8,11 +8,13 @@ import GifCard from "./GifCard";
 interface Props {
   keyword: string | null;
   gifs: Gif[];
+  className?: string;
+  style?: React.CSSProperties;
 }
 
-const ListOfGifs: React.FC<Props> = ({keyword, gifs}) => {
+const ListOfGifs: React.FC<Props> = ({keyword, gifs, className, style}) => {
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${className}`} style={style}>
       {keyword && <h3 className={styles.title}>{keyword}</h3>}
       <div className={styles.list}>
         {gifs.map((gif) => (
