@@ -1,6 +1,6 @@
 import React from "react";
 
-import ListOfGifs from "../ListOfGifs";
+import ListOfGifs from "../ListOfGifs/ListOfGifs";
 
 import {Search} from "./types";
 
