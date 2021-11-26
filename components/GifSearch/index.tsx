@@ -6,11 +6,6 @@ import LayoutSearchResults from "./LayoutSearchResults";
 import SearchForm from "./SearchForm";
 import {Search} from "./types";
 
-interface Submit {
-  limit: number;
-  keyword: boolean;
-}
-
 const GifSearchComponent: React.FC = () => {
   const [lastSearch, setLastSearch] = useState<string>("");
   const [searched, setSearched] = useState<Search[]>([]);
@@ -28,8 +23,6 @@ const GifSearchComponent: React.FC = () => {
   useEffect(() => {
     status === "resolved" && setSearched((prev) => [{keyword: lastSearch, gifs}, ...prev]);
   }, [status]);
-
-  console.log(searched);
 
   return (
     <div>
