@@ -6,8 +6,8 @@ import GifCard from "../GifCard";
 import styles from "./ListGifs.module.scss";
 
 interface Props {
-  keyword: string | null;
   gifs: Gif[];
+  keyword?: string;
   className?: string;
   style?: React.CSSProperties;
 }
