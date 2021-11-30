@@ -2,6 +2,7 @@ import React, {useEffect, useRef, useState} from "react";
 
 import {useFetchGif} from "../../hooks/useFetchGifs";
 import ListOfGifs from "../ListOfGifs/ListOfGifs";
+import {useNearScreen} from "../../hooks/useNearScreen";
 
 function Trending() {
   const {gifs, status} = useFetchGif({keyword: "trending", immediate: true});
@@ -11,23 +12,9 @@ function Trending() {
 
 // TODO: REALIZAR LAZY LOADING
 const LazyTrending = () => {
-  const [show, setShow] = useState(false);
-  const elementRef = useRef<HTMLDivElement>(null);
+  const {isNearScreen, fromRef} = useNearScreen();
 
-  useEffect(() => {
-    const onChange = (entries: IntersectionObserverEntry[]) => {
-      const el = entries[0];
-
-      if (el.isIntersecting) {
-        setShow(true);
-      }
-    };
-    const observer = new IntersectionObserver(onChange, {rootMargin: "100px"});
-
-    observer.observe(elementRef.current!);
-  }, []);
-
-  return <div ref={elementRef}>{show ? <Trending /> : null}</div>;
+  return <div ref={fromRef}>{isNearScreen ? <Trending /> : "Loading..."}</div>;
 };
 
 export default LazyTrending;
