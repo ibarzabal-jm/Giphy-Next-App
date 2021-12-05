@@ -1,12 +1,15 @@
+.masonry {
+  column-count: 4;
+  column-width: 200px;
 
+  div {
+    margin-bottom: 12px;
+    break-inside: avoid-column;
+  }
+}
 
-.list{
-    column-count: 4;
-    column-width: 200px;
-
-    div{
-        margin-bottom: 20px;
-        break-inside: avoid-column;
-    }
-    
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 12px;
 }

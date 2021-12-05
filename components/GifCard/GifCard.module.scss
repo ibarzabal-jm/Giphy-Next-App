@@ -1,0 +1,17 @@
+.card {
+    border-radius: 12px;
+    overflow: hidden;
+    img {
+    transition: all 0.3s;
+    transform: scale(1);
+  }
+  background-color: grey;
+
+  &:hover{
+      cursor: pointer;
+      img{
+
+          transform: scale(1.1);
+      }
+  }
+}
