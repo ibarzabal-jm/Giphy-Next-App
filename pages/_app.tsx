@@ -1,13 +1,14 @@
-import "../styles/globals.css";
+import "../styles/globals.scss";
 import type {AppProps} from "next/app";
 import {Fragment} from "react";
 
 import Footer from "../components/Layout/Footer";
+import Navbar from "../components/Layout/Navbar";
 
 function MyApp({Component, pageProps}: AppProps) {
   return (
     <Fragment>
-      <nav>Hola Soy un navbar</nav>
+      <Navbar />
       <Component {...pageProps} />
       <Footer />
     </Fragment>

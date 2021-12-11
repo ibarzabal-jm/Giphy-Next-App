@@ -10,7 +10,7 @@ interface Props {
   keyword?: string;
   className?: string;
   style?: React.CSSProperties;
-  masonry: boolean;
+  masonry?: boolean;
 }
 
 const ListOfGifs: React.FC<Props> = ({keyword, gifs, className, style, masonry = true}) => {
