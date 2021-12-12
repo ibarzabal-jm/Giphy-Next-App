@@ -12,7 +12,7 @@ function Trending() {
 
 // TODO: REALIZAR LAZY LOADING
 const LazyTrending = () => {
-  const {isNearScreen, fromRef} = useNearScreen();
+  const {isNearScreen, fromRef} = useNearScreen({});
 
   return <div ref={fromRef}>{isNearScreen ? <Trending /> : "Loading..."}</div>;
 };
