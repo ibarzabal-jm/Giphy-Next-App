@@ -34,7 +34,7 @@ export const useFetchGif = ({keyword, immediate = true, limit = 10}: useFetchGif
   }, []);
 
   useEffect(() => {
-    if (immediate) {
+    if (immediate || page > 0) {
       execute(keyword, limit, limit * page);
     }
   }, [execute, immediate, keyword, limit, page]);
