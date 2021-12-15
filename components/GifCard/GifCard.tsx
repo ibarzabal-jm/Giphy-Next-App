@@ -22,6 +22,7 @@ const GifCard: React.FC<Props> = ({image, height, width}) => {
         src={image.images.downsized_medium.url}
         width={width ? width : image.images.downsized_medium.width}
       />
+      <p>{image.user?.username}</p>
     </div>
   );
 };

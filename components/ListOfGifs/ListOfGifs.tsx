@@ -21,9 +21,9 @@ const ListOfGifs: React.FC<Props> = ({keyword, gifs, className, style, masonry =
         {gifs.map((gif) => (
           <GifCard
             key={gif.id}
-            height={masonry ? undefined : "400px"}
+            height={masonry ? undefined : "300px"}
             image={gif}
-            width={masonry ? undefined : "400px"}
+            width={masonry ? undefined : "300px"}
           />
         ))}
       </div>
