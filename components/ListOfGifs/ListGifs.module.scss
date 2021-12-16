@@ -1,13 +1,25 @@
 @import "../../styles/variables.scss";
 
+.container {
+  margin: 24px 0;
+  .title {
+    color: $orange;
+    text-transform: capitalize;
+    text-align: center;
+    margin: 0 0 12px;
+    font-weight: 800;
+    font-size: 24px;
+  }
+  
+}
+
 .masonry {
   column-count: 4;
   column-width: 200px;
-
-  div {
-    margin-bottom: 12px;
-    break-inside: avoid-column;
-  }
+}
+.masonry > div {
+  margin-bottom: 12px;
+  break-inside: avoid-column;
 }
 
 .grid {
@@ -16,7 +28,3 @@
   gap: 12px;
 }
 
-.title{
-  color: $orange;
-  text-transform: capitalize;
-}

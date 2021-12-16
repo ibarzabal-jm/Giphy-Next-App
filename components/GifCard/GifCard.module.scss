@@ -1,17 +1,47 @@
 .card {
-    border-radius: 12px;
-    overflow: hidden;
-    img {
+  position: relative;
+  border-radius: 12px;
+  background-color: grey;
+  overflow: hidden;
+  .main_image {
     transition: all 0.3s;
     transform: scale(1);
   }
-  background-color: grey;
 
-  &:hover{
-      cursor: pointer;
-      img{
-
-          transform: scale(1.1);
+  .user {
+    position: absolute;
+    visibility: hidden;
+    bottom: 10px;
+    right: 10px;
+    left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    .userimage {
+      margin-right: 12px;
+    }
+    .username {
+      display: flex;
+      align-items: center;
+      p {
+        color: white;
+        font-size: 16px;
+        font-weight: 700;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin-right: 6px;
       }
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+    .main_image {
+      transform: scale(1.1);
+    }
+    .user {
+      visibility: visible;
+    }
   }
 }
