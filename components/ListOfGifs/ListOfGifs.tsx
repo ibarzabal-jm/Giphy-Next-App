@@ -1,4 +1,5 @@
 import React from "react";
+import Masonry from "react-masonry-css";
 
 import {Gif} from "../../types/ApiResponse";
 import GifCard from "../GifCard/GifCard";
@@ -13,20 +14,39 @@ interface Props {
   masonry?: boolean;
 }
 
+const breakpointColumnsObj = {
+  default: 4,
+  1100: 3,
+  700: 2,
+  500: 1,
+};
+
 const ListOfGifs: React.FC<Props> = ({keyword, gifs, className, style, masonry = true}) => {
   return (
     <div className={`${styles.container} ${className}`} style={style}>
       {keyword && <h3 className={styles.title}>{keyword}</h3>}
-      <div className={masonry ? styles.masonry : styles.grid}>
-        {gifs.map((gif) => (
-          <GifCard
-            key={gif.id}
-            height={masonry ? undefined : "300px"}
-            image={gif}
-            width={masonry ? undefined : "300px"}
-          />
-        ))}
-      </div>
+      {masonry ? (
+        <Masonry
+          breakpointCols={breakpointColumnsObj}
+          className={styles.masonry_grid}
+          columnClassName={styles.masonry_grid_column}
+        >
+          {gifs.map((gif) => (
+            <GifCard key={gif.id} image={gif} />
+          ))}
+        </Masonry>
+      ) : (
+        <div className={styles.grid}>
+          {gifs.map((gif) => (
+            <GifCard
+              key={gif.id}
+              height={masonry ? undefined : "300px"}
+              image={gif}
+              width={masonry ? undefined : "300px"}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

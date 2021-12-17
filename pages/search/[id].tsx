@@ -6,6 +6,7 @@ import {api} from "../../api/api";
 import {Gif} from "../../types/ApiResponse";
 import {useNearScreen} from "../../hooks/useNearScreen";
 import {useFetchGif} from "../../hooks/useFetchGifs";
+import styles from "../../styles/pages/search.module.scss";
 
 export const getServerSideProps: GetServerSideProps = async ({params}) => {
   const keyword = params?.id as string;
@@ -39,12 +40,14 @@ const SearchPage: NextPage<Props> = ({gifs, keyword}) => {
   }, [newgifs]);
 
   return (
-    <div>
+    <section className={styles.landing}>
       <h1>{keyword}</h1>
-      <ListOfGifs gifs={gifsArray} masonry={false} />
-      {status === "pending" && <div style={{background: "red", height: "200px"}}>Cargandooo</div>}
+      <main>
+        <ListOfGifs gifs={gifsArray} masonry={true} />
+        {status === "pending" && <div style={{background: "red", height: "200px"}}>Cargandooo</div>}
+      </main>
       <div ref={externalRef} />
-    </div>
+    </section>
   );
 };
 

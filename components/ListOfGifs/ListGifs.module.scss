@@ -13,18 +13,36 @@
   
 }
 
-.masonry {
-  column-count: 4;
-  column-width: 200px;
+// .masonry {
+//   column-count: 4;
+//   column-width: 200px;
+// }
+// .masonry > div {
+//   margin-bottom: 12px;
+//   break-inside: avoid-column;
+// }
+
+.masonry_grid {
+  display: -webkit-box; /* Not needed if autoprefixing */
+  display: -ms-flexbox; /* Not needed if autoprefixing */
+  display: flex;
+  margin-left: -12px; /* gutter size offset */
+  width: auto;
 }
-.masonry > div {
-  margin-bottom: 12px;
-  break-inside: avoid-column;
+.masonry_grid_column {
+  padding-left: 24px; /* gutter size */
+  background-clip: padding-box;
+}
+
+/* Style your items */
+.masonry_grid_column > div { /* change div to reference your elements you put in <Masonry> */
+  background: grey;
+  margin-bottom: 24px;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 12px;
+  gap: 24px;
 }
 
