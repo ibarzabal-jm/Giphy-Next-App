@@ -12,26 +12,32 @@ interface useFetchGifsArgs {
 export const useFetchGif = ({keyword, immediate = true, limit = 10}: useFetchGifsArgs) => {
   const [status, setStatus] = useState<"idle" | "pending" | "resolved" | "rejected">("idle");
   const [gifs, setGifs] = useState<Gif[]>([]);
+  const [page, setPage] = useState<number>(0);
 
-  const execute = useCallback((keyword: string, limit = 10) => {
+  const nextPage = () => {
+    setPage((prev) => prev + 1);
+  };
+
+  const execute = useCallback((keyword: string, limit = 10, offset = 0) => {
     setStatus("pending");
 
-    return api.getListGif(keyword, limit).then(
+    return api.getListGif(keyword, limit, offset).then(
       (data) => {
         setGifs(data);
         setStatus("resolved");
       },
       (error) => {
         setStatus("rejected");
+        console.log(error);
       },
     );
   }, []);
 
   useEffect(() => {
-    if (immediate) {
-      execute(keyword, limit);
+    if (immediate || page > 0) {
+      execute(keyword, limit, limit * page);
     }
-  }, [execute, immediate, keyword, limit]);
+  }, [execute, immediate, keyword, limit, page]);
 
-  return {status, gifs, execute};
+  return {status, gifs, execute, nextPage};
 };

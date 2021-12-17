@@ -1,0 +1,17 @@
+@import "../variables.scss";
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background-color: $primary;
+  padding: 12px 24px;
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  a {
+    color: $orange;
+  }
+}

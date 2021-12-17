@@ -1,0 +1,71 @@
+.card {
+  position: relative;
+  border-radius: 8px;
+  z-index: 1;
+
+  &::before {
+    content: "";
+    background: linear-gradient(
+      130deg,
+      #ff7a18,
+      #af002d 41.07%,
+      #319197 76.05%
+    );
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    width: calc(100% + 10px);
+    height: calc(100% + 10px);
+    z-index: -1;
+    border-radius: 12px;
+  }
+  .main_image {
+    overflow: hidden;
+    border-radius: 7px;
+    background-color: grey;
+
+    img {
+      transition: all 0.3s;
+      transform: scale(1);
+    }
+  }
+
+  .user {
+    position: absolute;
+    visibility: hidden;
+    bottom: 10px;
+    right: 10px;
+    left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    .userimage {
+      margin-right: 12px;
+    }
+    .username {
+      display: flex;
+      align-items: center;
+      p {
+        color: white;
+        font-size: 16px;
+        font-weight: 700;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin-right: 6px;
+      }
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+    .main_image {
+      img {
+        transform: scale(1.1);
+      }
+    }
+    .user {
+      visibility: visible;
+    }
+  }
+}
