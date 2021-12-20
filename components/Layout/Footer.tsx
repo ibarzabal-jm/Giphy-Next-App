@@ -6,8 +6,13 @@ const Footer: React.FC = () => {
   return (
     <footer className={styles.footer}>
       <div className={`${styles["footer-content"]} container`}>
-        <div className={styles.heart}>
-          Creado con mucho amor
+        <a
+          className={styles.heart}
+          href="https://github.com/ibarzabal-jm"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Made with love
           <svg preserveAspectRatio="xMidYMid meet" viewBox="0 0 20 20">
             <use xlinkHref="#shape" />
             <path
@@ -16,7 +21,8 @@ const Footer: React.FC = () => {
               id="shape"
             />
           </svg>
-        </div>
+          by @ibarzabal-jm
+        </a>
         <a
           href="https://www.linkedin.com/in/juan-manuel-ibarzabal/"
           rel="noopener noreferrer"
