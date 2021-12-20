@@ -5,57 +5,39 @@
   margin-top: auto;
   .footer-content {
     padding: 12px 0;
-    align-items: center;
     color: white;
     display: flex;
+    align-items: center;
     justify-content: space-between;
+    gap: 12px;
 
     .heart {
+      display: none;
+    }
+
+    a {
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 8px;
-      svg {
-        display: block;
-        margin: auto;
-        height: 20px;
-        overflow: visible;
-        margin: 7px 0 0;
-
-        transition: transform 0.3s;
-        use {
-          stroke: red;
-          opacity: 0;
-          animation: pulsing 1000ms ease-out infinite;
-        }
-      }
-
-      &:hover {
-        cursor: pointer;
+      flex-direction: column;
+      gap: 12px;
+      &:hover{
         color: $cyan;
-        svg {
-          transform: scale(1.5);
-        }
       }
     }
 
-    a:hover {
-      color: $cyan;
-    }
     .signature {
       cursor: pointer;
+
       .text {
         animation: text 4s ease infinite forwards;
         stroke-dasharray: 313;
         stroke-dashoffset: 313;
       }
-
       .point {
         animation: point 4s ease infinite forwards;
         stroke-dasharray: 26;
         stroke-dashoffset: 26;
       }
-
       .dash {
         animation: dash 4s ease infinite forwards;
         stroke-dasharray: 108;
@@ -67,6 +49,36 @@
         .point,
         .dash {
           stroke: $cyan;
+        }
+      }
+    }
+    @media (min-width: 768px) {
+      .heart {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        svg {
+          display: block;
+          margin: auto;
+          height: 20px;
+          overflow: visible;
+          margin: 7px 0 0;
+
+          transition: transform 0.3s;
+          use {
+            stroke: red;
+            opacity: 0;
+            animation: pulsing 1000ms ease-out infinite;
+          }
+        }
+
+        &:hover {
+          cursor: pointer;
+          color: $cyan;
+          svg {
+            transform: scale(1.5);
+          }
         }
       }
     }

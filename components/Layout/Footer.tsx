@@ -22,7 +22,7 @@ const Footer: React.FC = () => {
           rel="noopener noreferrer"
           target="_blank"
         >
-          Giphy Copyright © Juan Manuel Ibarzabal Salles
+          Giphy Copyright ©<span> Juan Manuel Ibarzabal Salles </span>
         </a>
         <a href="https://juanmaportfolio.netlify.app/" rel="noopener noreferrer" target="_blank">
           <svg
