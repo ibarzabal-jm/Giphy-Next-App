@@ -35,7 +35,7 @@ const GifCard: React.FC<Props> = ({image, height, width}) => {
               className="giphy-verified-badge css-1cps2xv"
               height="14px"
               viewBox="0 0 19 17"
-              width="16px"
+              width="19px"
             >
               <path
                 className="giphy-verified-checkmark"
