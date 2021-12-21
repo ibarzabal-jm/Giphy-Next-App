@@ -2,9 +2,13 @@ import React, {useState} from "react";
 
 interface Props {
   onSubmit: (keyword: string, limit: number) => void;
+  classSearch?: string;
+  classForm?: string;
+  classLimit?: string;
+  classButtonSearch?: string;
 }
 
-const SearchForm: React.FC<Props> = ({onSubmit}) => {
+const SearchForm: React.FC<Props> = ({onSubmit, ...props}) => {
   const [keyword, setKeyword] = useState<string>("");
   const [limit, setLimit] = useState<number>(10);
 
@@ -13,7 +17,9 @@ const SearchForm: React.FC<Props> = ({onSubmit}) => {
   };
 
   const handleLimitChange = ({target}: React.ChangeEvent<HTMLInputElement>) => {
-    setLimit(Math.max(1, parseInt(target.value) || 0));
+    let value = Math.min(parseInt(target.value) || 0, 50);
+
+    setLimit(Math.max(1, value));
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -25,15 +31,24 @@ const SearchForm: React.FC<Props> = ({onSubmit}) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={props.classForm} onSubmit={handleSubmit}>
       <input
+        className={props.classSearch}
         placeholder="Searching Gif..."
         type="text"
         value={keyword}
         onChange={handleSetKeyword}
       />
-      <input min={1} type="number" value={limit} onChange={handleLimitChange} />
-      <button type="submit">Buscar</button>
+      <input
+        className={props.classLimit}
+        min={1}
+        type="number"
+        value={limit}
+        onChange={handleLimitChange}
+      />
+      <button className={props.classButtonSearch} type="submit">
+        Buscar
+      </button>
     </form>
   );
 };

@@ -1,0 +1,67 @@
+@import "@styles/variables";
+
+.gifSearchComponent {
+  display: flex;
+  flex-direction: column;
+}
+
+.formSearch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+
+  .search,
+  .quantity,
+  .buttonsearch {
+    background: transparent;
+    height: 36px;
+    font-size: 18px;
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
+    color: $neon;
+    border: $neon 0.125em solid;
+    padding: 0.25em 1em;
+
+    text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em currentColor;
+
+    box-shadow: inset 0 0 0.5em 0 $neon, 0 0 0.5em 0 $neon;
+
+    position: relative;
+    &:hover,
+    &:focus {
+      color: $neonblue;
+      text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em currentColor;
+
+      box-shadow: inset 0 0 0.5em 0 $neonblue, 0 0 0.5em 0 $neonblue;
+      border-color: $neonblue;
+      // background-color: $neon;
+      text-shadow: none;
+      outline: none;
+    }
+  }
+  .search {
+    height: 36px;
+    flex: 1;
+    border-radius: 20px 0 0 20px;
+  }
+  .quantity {
+    height: 36px;
+    border-right: none;
+    border-left: none;
+    max-width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    -moz-appearance: textfield; /* Firefox */
+  }
+  .buttonsearch {
+    border-radius: 0 20px 20px 0;
+  }
+}

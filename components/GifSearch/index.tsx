@@ -5,6 +5,7 @@ import {useFetchGif} from "../../hooks/useFetchGifs";
 import LayoutSearchResults from "./LayoutSearchResults";
 import SearchForm from "./SearchForm";
 import {Search} from "./types";
+import styles from "./index.module.scss";
 
 const GifSearchComponent: React.FC = () => {
   const [lastSearch, setLastSearch] = useState<string>("");
@@ -26,8 +27,14 @@ const GifSearchComponent: React.FC = () => {
   }, [status]);
 
   return (
-    <section>
-      <SearchForm onSubmit={onSubmit} />
+    <section className={styles.gifSearchComponent}>
+      <SearchForm
+        classButtonSearch={styles.buttonsearch}
+        classForm={styles.formSearch}
+        classLimit={styles.quantity}
+        classSearch={styles.search}
+        onSubmit={onSubmit}
+      />
       <button onClick={() => setSeparateToggle(!separateToggle)}>
         {separateToggle ? "All" : "Separate"}
       </button>
