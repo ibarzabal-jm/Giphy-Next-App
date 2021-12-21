@@ -26,7 +26,7 @@ const GifSearchComponent: React.FC = () => {
   }, [status]);
 
   return (
-    <div>
+    <section>
       <SearchForm onSubmit={onSubmit} />
       <button onClick={() => setSeparateToggle(!separateToggle)}>
         {separateToggle ? "All" : "Separate"}
@@ -37,7 +37,7 @@ const GifSearchComponent: React.FC = () => {
       {searched.length > 0 && (
         <LayoutSearchResults masonry={masonry} searchs={searched} separate={separateToggle} />
       )}
-    </div>
+    </section>
   );
 };
 

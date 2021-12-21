@@ -13,7 +13,7 @@ const Home: NextPage = () => {
         <link href="/favicon.ico" rel="icon" />
       </Head>
 
-      <main>
+      <main className="container">
         <h1>Giphy Next App</h1>
         <GifSearchComponent />
       </main>
