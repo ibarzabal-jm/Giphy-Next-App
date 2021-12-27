@@ -8,10 +8,13 @@
 .formSearch {
   display: flex;
   align-items: center;
+  margin: auto;
+  width: 100%;
   justify-content: center;
   margin-bottom: 20px;
   background: transparent;
   height: 36px;
+  max-width: 650px;
   border-radius: 20px;
   cursor: pointer;
   text-decoration: none;

@@ -24,7 +24,19 @@ const breakpointColumnsObj = {
 const ListOfGifs: React.FC<Props> = ({keyword, gifs, className, style, masonry = true}) => {
   return (
     <div className={`${styles.container} ${className}`} style={style}>
-      {keyword && <h3 className={styles.title}>{keyword}</h3>}
+      {keyword && (
+        <h3 aria-label={keyword} className={styles.title} role="heading">
+          {keyword.split("").map((char, index) => (
+            <span
+              key={index}
+              aria-hidden="false"
+              className={index % 3 === 0 ? "" : index % 2 === 0 ? styles.blink2 : styles.blink3}
+            >
+              {char}
+            </span>
+          ))}
+        </h3>
+      )}
       {masonry ? (
         <Masonry
           breakpointCols={breakpointColumnsObj}
