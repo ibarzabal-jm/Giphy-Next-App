@@ -10,7 +10,7 @@ import styles from "../../styles/pages/search.module.scss";
 
 export const getServerSideProps: GetServerSideProps = async ({params}) => {
   const keyword = params?.id as string;
-  const gifs = await api.getListGif(keyword, 10);
+  const gifs = await api.getListGif(keyword, 12);
 
   return {
     props: {keyword, gifs},

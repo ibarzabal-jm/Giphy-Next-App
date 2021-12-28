@@ -9,7 +9,7 @@ interface useFetchGifsArgs {
   limit?: number;
 }
 
-export const useFetchGif = ({keyword, immediate = true, limit = 10}: useFetchGifsArgs) => {
+export const useFetchGif = ({keyword, immediate = true, limit = 12}: useFetchGifsArgs) => {
   const [status, setStatus] = useState<"idle" | "pending" | "resolved" | "rejected">("idle");
   const [gifs, setGifs] = useState<Gif[]>([]);
   const [page, setPage] = useState<number>(0);
@@ -18,7 +18,7 @@ export const useFetchGif = ({keyword, immediate = true, limit = 10}: useFetchGif
     setPage((prev) => prev + 1);
   };
 
-  const execute = useCallback((keyword: string, limit = 10, offset = 0) => {
+  const execute = useCallback((keyword: string, limit = 12, offset = 0) => {
     setStatus("pending");
 
     return api.getListGif(keyword, limit, offset).then(
