@@ -10,7 +10,7 @@ interface Props {
 
 const SearchForm: React.FC<Props> = ({onSubmit, ...props}) => {
   const [keyword, setKeyword] = useState<string>("");
-  const [limit, setLimit] = useState<number>(10);
+  const [limit, setLimit] = useState<number>(12);
 
   const handleSetKeyword = ({target}: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(target.value);

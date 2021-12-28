@@ -30,7 +30,7 @@ const ListOfGifs: React.FC<Props> = ({keyword, gifs, className, style, masonry =
             <span
               key={index}
               aria-hidden="false"
-              className={index % 3 === 0 ? "" : index % 2 === 0 ? styles.blink2 : styles.blink3}
+              className={index % 2 === 0 ? "" : index % 3 === 0 ? styles.blink2 : styles.blink3}
             >
               {char}
             </span>
