@@ -11,8 +11,14 @@
     gap: 6px;
 
     button {
-      
-      background-image: linear-gradient(115deg,#4fcf70,#fad648,#a767e5,#12bcfe,#44ce7b);
+      background-image: linear-gradient(
+        115deg,
+        #4fcf70,
+        #fad648,
+        #a767e5,
+        #12bcfe,
+        #44ce7b
+      );
       align-items: center;
       background-size: 50% 100%;
       border-radius: 5px;
@@ -33,8 +39,8 @@
         width: 100%;
       }
 
-      &:hover{
-        animation: slide .5s linear infinite;
+      &:hover {
+        animation: slide 0.5s linear infinite;
       }
     }
   }
@@ -114,9 +120,8 @@
   }
 }
 
-
-@keyframes slide{
-  to{
+@keyframes slide {
+  to {
     background-position: 100% 200%;
   }
 }

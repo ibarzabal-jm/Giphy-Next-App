@@ -1,26 +1,10 @@
 @import "../../styles/variables.scss";
+@import "../../styles/mixins";
 
 .container {
   margin: 24px 0;
   .title {
-    // color: $orange;
-    text-transform: capitalize;
-    text-align: center;
-    margin: 0 0 12px;
-    font-weight: 800;
-    font-size: 24px;
-    color: #fee;
-    user-select: none;
-    font: 400 8vh "Yellowtail";
-    text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #ff4444, 0 0 0.5em #ff4444,
-      0 0 0.1em #ff4444, 0 10px 3px #000;
-
-    .blink2 {
-      animation: blink linear infinite 2s;
-    }
-    .blink3 {
-      animation: blink linear infinite 3s;
-    }
+    @include titleNeon(#ff4444);
   }
 }
 
@@ -56,37 +40,4 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 24px;
-}
-
-@keyframes blink {
-  78% {
-    color: inherit;
-    text-shadow: inherit;
-  }
-  79% {
-    color: #333;
-  }
-  80% {
-    text-shadow: none;
-  }
-  81% {
-    color: inherit;
-    text-shadow: inherit;
-  }
-  82% {
-    color: #333;
-    text-shadow: none;
-  }
-  83% {
-    color: inherit;
-    text-shadow: inherit;
-  }
-  92% {
-    color: #333;
-    text-shadow: none;
-  }
-  92.2% {
-    color: inherit;
-    text-shadow: inherit;
-  }
 }

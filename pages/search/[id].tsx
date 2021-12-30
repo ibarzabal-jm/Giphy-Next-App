@@ -42,14 +42,28 @@ const SearchPage: NextPage<Props> = ({gifs, keyword}) => {
   }, [newgifs]);
 
   return (
-    <section className={styles.landing}>
-      <h1>{keyword}</h1>
-      <main>
+    <section>
+      <main className={styles.landing + " container"}>
+        <h1>
+          {keyword.split("").map((char, index) => (
+            <span
+              key={index}
+              aria-hidden="false"
+              className={index % 2 === 0 ? "" : index % 3 === 0 ? styles.blink2 : styles.blink3}
+            >
+              {char}
+            </span>
+          ))}
+        </h1>
         <ListOfGifs gifs={gifsArray} masonry={true} />
-        {status === "pending" && <Loading />}
+        {status === "pending" && (
+          <div className={styles.loadingContainer}>
+            <Loading />
+          </div>
+        )}
         {isEnd && "Fin"}
+        <div ref={externalRef} />
       </main>
-      <div ref={externalRef} />
     </section>
   );
 };
