@@ -11,6 +11,7 @@ interface useFetchGifsArgs {
 
 export const useFetchGif = ({keyword, immediate = true, limit = 12}: useFetchGifsArgs) => {
   const [status, setStatus] = useState<"idle" | "pending" | "resolved" | "rejected">("idle");
+  const [isEnd, setIsEnd] = useState<boolean>(false);
   const [gifs, setGifs] = useState<Gif[]>([]);
   const [page, setPage] = useState<number>(0);
 
@@ -25,10 +26,11 @@ export const useFetchGif = ({keyword, immediate = true, limit = 12}: useFetchGif
       (data) => {
         setGifs(data);
         setStatus("resolved");
+        data.length === 0 && setIsEnd(true);
       },
       (error) => {
         setStatus("rejected");
-        console.log(error);
+        alert(error);
       },
     );
   }, []);
@@ -39,5 +41,5 @@ export const useFetchGif = ({keyword, immediate = true, limit = 12}: useFetchGif
     }
   }, [execute, immediate, keyword, limit, page]);
 
-  return {status, gifs, execute, nextPage};
+  return {status, gifs, execute, nextPage, isEnd};
 };
