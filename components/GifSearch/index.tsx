@@ -35,15 +35,20 @@ const GifSearchComponent: React.FC = () => {
         classSearch={styles.search}
         onSubmit={onSubmit}
       />
-      <button onClick={() => setSeparateToggle(!separateToggle)}>
-        {separateToggle ? "All" : "Separate"}
-      </button>
-      <button onClick={() => setMasonry(!masonry)}>{masonry ? "Grid" : "Masonry"}</button>
 
       {status === "pending" && <p>Cargando...{lastSearch} </p>}
       {searched.length > 0 && (
         <LayoutSearchResults masonry={masonry} searchs={searched} separate={separateToggle} />
       )}
+
+      <div className={styles.buttonsWrap}>
+        <button onClick={() => setSeparateToggle(!separateToggle)}>
+          <span>{separateToggle ? "All" : "Separate"}</span>
+        </button>
+        <button onClick={() => setMasonry(!masonry)}>
+          <span>{masonry ? "Grid" : "Masonry"}</span>
+        </button>
+      </div>
     </section>
   );
 };
