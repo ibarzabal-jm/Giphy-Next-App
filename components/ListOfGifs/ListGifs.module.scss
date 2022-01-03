@@ -1,11 +1,7 @@
 @import "../../styles/variables.scss";
-@import "../../styles/mixins";
 
 .container {
   margin: 24px 0;
-  .title {
-    @include titleNeon(#ff4444);
-  }
 }
 
 // .masonry {

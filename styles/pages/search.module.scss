@@ -1,11 +1,8 @@
 @import "@styles/variables.scss";
-@import "@styles/mixins";
 
 
 .landing {
-  h1{
-    @include titleNeon(#ffaaff)
-  }
+
 }
 
 .loadingContainer {

@@ -18,6 +18,7 @@ const GifSearchComponent: React.FC = () => {
   });
 
   const onSubmit = (lastSearch: string, limit: number) => {
+    if (searched.find((search) => search.keyword === lastSearch)) return;
     setLastSearch(lastSearch);
     execute(lastSearch, limit);
   };

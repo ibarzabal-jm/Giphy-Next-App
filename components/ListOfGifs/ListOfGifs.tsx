@@ -1,6 +1,6 @@
 import Link from "next/link";
-import React from "react";
 import Masonry from "react-masonry-css";
+import TitleNeon from "@components/Layout/TitleNeon";
 
 import {Gif} from "../../types/ApiResponse";
 import GifCard from "../GifCard/GifCard";
@@ -28,17 +28,7 @@ const ListOfGifs: React.FC<Props> = ({keyword, gifs, className, style, masonry =
       {keyword && (
         <Link href={`/search/${keyword}`}>
           <a className={styles.link}>
-            <h3 aria-label={keyword} className={styles.title} role="heading">
-              {keyword.split("").map((char, index) => (
-                <span
-                  key={index}
-                  aria-hidden="false"
-                  className={index % 2 === 0 ? "" : index % 3 === 0 ? styles.blink2 : styles.blink3}
-                >
-                  {char}
-                </span>
-              ))}
-            </h3>
+            <TitleNeon tag="h3" title={keyword} />
           </a>
         </Link>
       )}

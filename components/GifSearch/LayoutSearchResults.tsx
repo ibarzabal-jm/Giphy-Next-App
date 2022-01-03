@@ -1,4 +1,5 @@
 import Link from "next/link";
+import TitleNeon from "@components/Layout/TitleNeon";
 
 import ListOfGifs from "../ListOfGifs/ListOfGifs";
 
@@ -30,9 +31,13 @@ const LayoutSearchResults: React.FC<Props> = ({searchs, masonry, separate = true
         ))
       ) : (
         <div>
+          <div>
+            <TitleNeon color="#acffaf" tag="h2" title={searchs[0].keyword} />
+            History
+          </div>
           <ListOfGifs
             gifs={searchs.flatMap((search) => search.gifs)}
-            keyword={searchs[0].keyword}
+            // keyword={searchs[0].keyword}
             masonry={masonry}
           />
         </div>

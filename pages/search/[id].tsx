@@ -1,6 +1,7 @@
 import React, {useEffect, useRef, useState} from "react";
 import {GetServerSideProps, NextPage} from "next";
 import Loading from "@components/Loading/Loading";
+import TitleNeon from "@components/Layout/TitleNeon";
 
 import ListOfGifs from "../../components/ListOfGifs/ListOfGifs";
 import {api} from "../../api/api";
@@ -44,17 +45,7 @@ const SearchPage: NextPage<Props> = ({gifs, keyword}) => {
   return (
     <section>
       <main className={styles.landing + " container"}>
-        <h1 aria-label={keyword} className={styles.title} role="heading">
-          {keyword.split("").map((char, index) => (
-            <span
-              key={index}
-              aria-hidden="false"
-              className={index % 2 === 0 ? "" : index % 3 === 0 ? styles.blink2 : styles.blink3}
-            >
-              {char}
-            </span>
-          ))}
-        </h1>
+        <TitleNeon color="#ffaaff" tag="h1" title={keyword} />
         <ListOfGifs gifs={gifsArray} masonry={true} />
         {status === "pending" && (
           <div className={styles.loadingContainer}>
