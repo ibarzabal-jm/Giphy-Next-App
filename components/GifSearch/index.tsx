@@ -2,10 +2,12 @@ import React, {useEffect, useState} from "react";
 
 import {useFetchGif} from "../../hooks/useFetchGifs";
 
-import LayoutSearchResults from "./LayoutSearchResults";
+import LayoutSearchResults from "./SearchLayout";
 import SearchForm from "./SearchForm";
 import {Search} from "./types";
 import styles from "./index.module.scss";
+import SeparateSearchLayout from "./SeparateSearchLayout";
+import SearchLayout from "./SearchLayout";
 
 const GifSearchComponent: React.FC = () => {
   const [lastSearch, setLastSearch] = useState<string>("");
@@ -39,7 +41,13 @@ const GifSearchComponent: React.FC = () => {
 
       {status === "pending" && <p>Cargando...{lastSearch} </p>}
       {searched.length > 0 && (
-        <LayoutSearchResults masonry={masonry} searchs={searched} separate={separateToggle} />
+        <div className={styles.SearchContainer}>
+          {separateToggle ? (
+            <SeparateSearchLayout masonry={masonry} searchs={searched} />
+          ) : (
+            <SearchLayout masonry={masonry} searchs={searched} />
+          )}
+        </div>
       )}
 
       <div className={styles.buttonsWrap}>
