@@ -1,4 +1,5 @@
-import React from "react";
+import Link from "next/link";
+import React, {useState} from "react";
 
 import ListOfGifs from "../ListOfGifs/ListOfGifs";
 
@@ -15,19 +16,21 @@ const LayoutSearchResults: React.FC<Props> = ({searchs, masonry, separate = true
     <div className="Busquedas">
       {separate ? (
         searchs.map((search) => (
-          <ListOfGifs
-            key={search.keyword}
-            gifs={search.gifs}
-            keyword={search.keyword}
-            masonry={masonry}
-          />
+          <div key={search.keyword}>
+            <ListOfGifs gifs={search.gifs} keyword={search.keyword} masonry={masonry} />
+            <Link href={`/search/${search.keyword}`}>
+              <a>Ver más de {search.keyword}</a>
+            </Link>
+          </div>
         ))
       ) : (
-        <ListOfGifs
-          gifs={searchs.flatMap((search) => search.gifs)}
-          keyword={searchs[0].keyword}
-          masonry={masonry}
-        />
+        <div>
+          <ListOfGifs
+            gifs={searchs.flatMap((search) => search.gifs)}
+            keyword={searchs[0].keyword}
+            masonry={masonry}
+          />
+        </div>
       )}
     </div>
   );

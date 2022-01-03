@@ -2,8 +2,6 @@ import type {NextPage} from "next";
 import Head from "next/head";
 import GifSearchComponent from "@components/GifSearch";
 
-// import styles from "../styles/pages/Home.module.css";
-
 const Home: NextPage = () => {
   return (
     <div>

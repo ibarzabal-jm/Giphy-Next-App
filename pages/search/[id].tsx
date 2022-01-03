@@ -44,7 +44,7 @@ const SearchPage: NextPage<Props> = ({gifs, keyword}) => {
   return (
     <section>
       <main className={styles.landing + " container"}>
-        <h1>
+        <h1 aria-label={keyword} className={styles.title} role="heading">
           {keyword.split("").map((char, index) => (
             <span
               key={index}

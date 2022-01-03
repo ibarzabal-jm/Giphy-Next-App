@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import Masonry from "react-masonry-css";
 
@@ -25,17 +26,21 @@ const ListOfGifs: React.FC<Props> = ({keyword, gifs, className, style, masonry =
   return (
     <div className={`${styles.container} ${className}`} style={style}>
       {keyword && (
-        <h3 aria-label={keyword} className={styles.title} role="heading">
-          {keyword.split("").map((char, index) => (
-            <span
-              key={index}
-              aria-hidden="false"
-              className={index % 2 === 0 ? "" : index % 3 === 0 ? styles.blink2 : styles.blink3}
-            >
-              {char}
-            </span>
-          ))}
-        </h3>
+        <Link href={`/search/${keyword}`}>
+          <a className={styles.link}>
+            <h3 aria-label={keyword} className={styles.title} role="heading">
+              {keyword.split("").map((char, index) => (
+                <span
+                  key={index}
+                  aria-hidden="false"
+                  className={index % 2 === 0 ? "" : index % 3 === 0 ? styles.blink2 : styles.blink3}
+                >
+                  {char}
+                </span>
+              ))}
+            </h3>
+          </a>
+        </Link>
       )}
       {masonry ? (
         <Masonry
