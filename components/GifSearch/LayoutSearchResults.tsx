@@ -1,10 +1,9 @@
 import Link from "next/link";
-import React, {useState} from "react";
 
 import ListOfGifs from "../ListOfGifs/ListOfGifs";
 
 import {Search} from "./types";
-
+import styles from "./LayoutSearchResults.module.scss";
 interface Props {
   searchs: Search[];
   separate: boolean;
@@ -13,13 +12,19 @@ interface Props {
 
 const LayoutSearchResults: React.FC<Props> = ({searchs, masonry, separate = true}) => {
   return (
-    <div className="Busquedas">
+    <div className={styles.SearchsContainer}>
       {separate ? (
         searchs.map((search) => (
-          <div key={search.keyword}>
+          <div key={search.keyword} className={styles.SearchItem}>
             <ListOfGifs gifs={search.gifs} keyword={search.keyword} masonry={masonry} />
             <Link href={`/search/${search.keyword}`}>
-              <a>Ver más de {search.keyword}</a>
+              <a className={styles.buttonNeon}>
+                <span />
+                <span />
+                <span />
+                <span />
+                Ver más de {search.keyword}
+              </a>
             </Link>
           </div>
         ))
