@@ -15,6 +15,13 @@ interface Props {
   masonry?: boolean;
 }
 
+const arrayBgGradient: Array<"red-blue" | "orange-red" | "blue-red" | "green-cyan"> = [
+  "red-blue",
+  "orange-red",
+  "blue-red",
+  "green-cyan",
+];
+
 const breakpointColumnsObj = {
   default: 4,
   1100: 3,
@@ -38,15 +45,20 @@ const ListOfGifs: React.FC<Props> = ({keyword, gifs, className, style, masonry =
           className={styles.masonry_grid}
           columnClassName={styles.masonry_grid_column}
         >
-          {gifs.map((gif) => (
-            <GifCard key={gif.id} image={gif} />
+          {gifs.map((gif, index) => (
+            <GifCard
+              key={gif.id}
+              color={arrayBgGradient[index % arrayBgGradient.length]}
+              image={gif}
+            />
           ))}
         </Masonry>
       ) : (
         <div className={styles.grid}>
-          {gifs.map((gif) => (
+          {gifs.map((gif, index) => (
             <GifCard
               key={gif.id}
+              color={arrayBgGradient[index % arrayBgGradient.length]}
               height={masonry ? undefined : "300px"}
               image={gif}
               width={masonry ? undefined : "300px"}

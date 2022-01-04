@@ -4,25 +4,37 @@
   z-index: 0;
   padding: 3px;
 
+  &.red-blue {
+    &::before {
+      background: linear-gradient(
+        130deg,
+        #ff7a18,
+        #af002d 41.07%,
+        #319197 76.05%
+      );
+    }
+  }
+
+  &.orange-red {
+    &::before {
+      background: linear-gradient(45deg, #ffbc00, #ff0058);
+    }
+  }
+  &.blue-red {
+    &::before {
+      background: linear-gradient(315deg, #03a9f4, #ff0058);
+    }
+  }
+  &.green-cyan {
+    &::before {
+      background: linear-gradient(315deg, #4dff03, #00d0ff);
+    }
+  }
+
   &::before {
     content: "";
-    background: linear-gradient(
-      130deg,
-      #ff7a18,
-      #af002d 41.07%,
-      #319197 76.05%
-    );
-    // background: linear-gradient(
-    //   45deg,
-    //   #ffbc00,
-    //   #ff0058,
-    // );
-    // background: linear-gradient(
-    //   315deg,
-    //   #03a9f4,
-    //   #ff0058,
-    // );
-    // background: linear-gradient(315deg, #4dff03, #00d0ff);
+
+    
     position: absolute;
     top: -2px;
     left: -2px;
@@ -71,13 +83,13 @@
   }
 
   &:hover {
-    cursor: pointer; 
+    cursor: pointer;
     .main_image {
       img {
         transform: scale(1.1);
       }
     }
-    &::before{
+    &::before {
       filter: none;
     }
     .user {
@@ -85,4 +97,3 @@
     }
   }
 }
-

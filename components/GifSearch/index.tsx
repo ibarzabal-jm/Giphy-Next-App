@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
+import Loading from "@components/Loading/Loading";
 
 import {useFetchGif} from "../../hooks/useFetchGifs";
 
-import LayoutSearchResults from "./SearchLayout";
 import SearchForm from "./SearchForm";
 import {Search} from "./types";
 import styles from "./index.module.scss";
@@ -39,7 +39,11 @@ const GifSearchComponent: React.FC = () => {
         onSubmit={onSubmit}
       />
 
-      {status === "pending" && <p>Cargando...{lastSearch} </p>}
+      {status === "pending" && (
+        <div className={styles.loadingContainer}>
+          <Loading />
+        </div>
+      )}
       {searched.length > 0 && (
         <div className={styles.SearchContainer}>
           {separateToggle ? (

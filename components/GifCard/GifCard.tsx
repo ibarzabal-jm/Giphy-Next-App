@@ -9,11 +9,12 @@ interface Props {
   image: Gif;
   height?: string;
   width?: string;
+  color?: "red-blue" | "orange-red" | "blue-red" | "green-cyan";
 }
 
-const GifCard: React.FC<Props> = ({image, height, width}) => {
+const GifCard: React.FC<Props> = ({image, height, width, color = "red-blue"}) => {
   return (
-    <div className={styles.card}>
+    <div className={`${styles.card} ${styles[color]}`}>
       <div className={styles.main_image}>
         <Image
           alt={image.title}

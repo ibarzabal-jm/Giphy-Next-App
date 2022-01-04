@@ -120,7 +120,13 @@
   }
 }
 
-.SearchContainer{
+.loadingContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.SearchContainer {
   margin-bottom: 36px;
 }
 
