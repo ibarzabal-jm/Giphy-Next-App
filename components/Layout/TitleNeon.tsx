@@ -4,9 +4,15 @@ interface Props {
   title: string;
   tag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   color?: string;
+  textTransform?: "uppercase" | "lowercase" | "capitalize" | "none";
 }
 
-const TitleNeon: React.FC<Props> = ({title, tag, color = "#ff4444"}) => {
+const TitleNeon: React.FC<Props> = ({
+  title,
+  tag,
+  color = "#ff4444",
+  textTransform = "capitalize",
+}) => {
   const Tag = tag as keyof JSX.IntrinsicElements;
 
   return (
@@ -19,7 +25,7 @@ const TitleNeon: React.FC<Props> = ({title, tag, color = "#ff4444"}) => {
       <style jsx>
         {`
           .title {
-            text-transform: capitalize;
+            text-transform: ${textTransform};
             text-align: center;
             margin: 0 0 12px;
             font-weight: 800;
