@@ -1,17 +1,12 @@
-@import "../variables.scss";
+@import "@styles/variables.scss";
 
-.landing{
-    max-width: 100vw;
 
-    h1{
-        font-size: 34px;
-        color: $orange;
-        text-transform: capitalize;
-        text-align: center;
-    }
+.landing {
 
-    main{
-        max-width: 1440px;
-        margin: 0 auto;
-    }
+}
+
+.loadingContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

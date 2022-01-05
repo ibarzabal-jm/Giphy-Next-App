@@ -1,10 +1,13 @@
 import React, {useEffect, useState} from "react";
+import Loading from "@components/Loading/Loading";
 
 import {useFetchGif} from "../../hooks/useFetchGifs";
 
-import LayoutSearchResults from "./LayoutSearchResults";
 import SearchForm from "./SearchForm";
 import {Search} from "./types";
+import styles from "./index.module.scss";
+import SeparateSearchLayout from "./SeparateSearchLayout";
+import SearchLayout from "./SearchLayout";
 
 const GifSearchComponent: React.FC = () => {
   const [lastSearch, setLastSearch] = useState<string>("");
@@ -17,6 +20,7 @@ const GifSearchComponent: React.FC = () => {
   });
 
   const onSubmit = (lastSearch: string, limit: number) => {
+    if (searched.find((search) => search.keyword === lastSearch)) return;
     setLastSearch(lastSearch);
     execute(lastSearch, limit);
   };
@@ -26,18 +30,39 @@ const GifSearchComponent: React.FC = () => {
   }, [status]);
 
   return (
-    <div>
-      <SearchForm onSubmit={onSubmit} />
-      <button onClick={() => setSeparateToggle(!separateToggle)}>
-        {separateToggle ? "All" : "Separate"}
-      </button>
-      <button onClick={() => setMasonry(!masonry)}>{masonry ? "Grid" : "Masonry"}</button>
+    <section className={styles.gifSearchComponent}>
+      <SearchForm
+        classButtonSearch={styles.buttonsearch}
+        classForm={styles.formSearch}
+        classLimit={styles.quantity}
+        classSearch={styles.search}
+        onSubmit={onSubmit}
+      />
 
-      {status === "pending" && <p>Cargando...{lastSearch} </p>}
-      {searched.length > 0 && (
-        <LayoutSearchResults masonry={masonry} searchs={searched} separate={separateToggle} />
+      {status === "pending" && (
+        <div className={styles.loadingContainer}>
+          <Loading />
+        </div>
       )}
-    </div>
+      {searched.length > 0 && (
+        <div className={styles.SearchContainer}>
+          {separateToggle ? (
+            <SeparateSearchLayout masonry={masonry} searchs={searched} />
+          ) : (
+            <SearchLayout masonry={masonry} searchs={searched} />
+          )}
+        </div>
+      )}
+
+      <div className={styles.buttonsWrap}>
+        <button onClick={() => setSeparateToggle(!separateToggle)}>
+          <span>{separateToggle ? "All" : "Separate"}</span>
+        </button>
+        <button onClick={() => setMasonry(!masonry)}>
+          <span>{masonry ? "Grid" : "Masonry"}</span>
+        </button>
+      </div>
+    </section>
   );
 };
 

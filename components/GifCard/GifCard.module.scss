@@ -1,21 +1,48 @@
 .card {
   position: relative;
   border-radius: 8px;
-  z-index: 1;
+  z-index: 0;
+  padding: 3px;
 
-  &::before {
-    content: "";
+  // INICIO BACKGROUND
+  &.orange-red-blue {
     background: linear-gradient(
       130deg,
       #ff7a18,
       #af002d 41.07%,
       #319197 76.05%
     );
+  }
+  &.orange-red {
+    background: linear-gradient(45deg, #ffbc00, #ff0058);
+  }
+  &.blue-red {
+    background: linear-gradient(45deg, #03a9f4, #ff0058);
+  }
+  &.green-cyan {
+    background: linear-gradient(315deg, #4dff03, #00d0ff);
+  }
+  &.blue-yellow {
+    background: linear-gradient(45deg, #85ffbd 0%, #fffb7d 100%);
+  }
+  &.green-violet{
+    background: linear-gradient(135deg, #59c173 50%, #a17fe0, #5d26c1);
+  }
+  &.cyan-violet {
+    background: linear-gradient(135deg, #00dbde 0%, #fc00ff 100%);
+  }
+
+  // FIN Background COLOR
+
+  &::before {
+    content: "";
+    background: inherit;
     position: absolute;
-    top: -5px;
-    left: -5px;
-    width: calc(100% + 10px);
-    height: calc(100% + 10px);
+    top: -2px;
+    left: -2px;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    filter: blur(6px);
     z-index: -1;
     border-radius: 12px;
   }
@@ -63,6 +90,9 @@
       img {
         transform: scale(1.1);
       }
+    }
+    &::before {
+      filter: none;
     }
     .user {
       visibility: visible;

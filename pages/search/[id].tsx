@@ -1,5 +1,7 @@
 import React, {useEffect, useRef, useState} from "react";
 import {GetServerSideProps, NextPage} from "next";
+import Loading from "@components/Loading/Loading";
+import TitleNeon from "@components/Layout/TitleNeon";
 
 import ListOfGifs from "../../components/ListOfGifs/ListOfGifs";
 import {api} from "../../api/api";
@@ -10,7 +12,7 @@ import styles from "../../styles/pages/search.module.scss";
 
 export const getServerSideProps: GetServerSideProps = async ({params}) => {
   const keyword = params?.id as string;
-  const gifs = await api.getListGif(keyword, 10);
+  const gifs = await api.getListGif(keyword, 12);
 
   return {
     props: {keyword, gifs},
@@ -25,10 +27,11 @@ interface Props {
 const SearchPage: NextPage<Props> = ({gifs, keyword}) => {
   const [gifsArray, setGifsArray] = useState([...gifs]);
   const externalRef = useRef(null);
-  const {gifs: newgifs, nextPage, status} = useFetchGif({keyword, immediate: false});
+  const {gifs: newgifs, nextPage, status, isEnd} = useFetchGif({keyword, immediate: false});
   const {isNearScreen} = useNearScreen({
     distance: "100px",
     externalRef: status === "pending" ? null : externalRef,
+    once: isEnd,
   });
 
   useEffect(() => {
@@ -40,13 +43,23 @@ const SearchPage: NextPage<Props> = ({gifs, keyword}) => {
   }, [newgifs]);
 
   return (
-    <section className={styles.landing}>
-      <h1>{keyword}</h1>
-      <main>
+    <section>
+      <main className={styles.landing + " container"}>
+        <TitleNeon color="#ffaaff" tag="h1" title={keyword} />
         <ListOfGifs gifs={gifsArray} masonry={true} />
-        {status === "pending" && <div style={{background: "red", height: "200px"}}>Cargandooo</div>}
+        {status === "pending" && (
+          <div className={styles.loadingContainer}>
+            <Loading />
+          </div>
+        )}
+        {/* TODO: HACER EL FIN LINDO */}
+        {isEnd && (
+          <div className={styles.loadingContainer}>
+            <TitleNeon color="#aaffaa" tag="h4" textTransform="none" title="That's all Folks" />
+          </div>
+        )}
+        <div ref={externalRef} />
       </main>
-      <div ref={externalRef} />
     </section>
   );
 };

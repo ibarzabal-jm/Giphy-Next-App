@@ -4,16 +4,18 @@ import Image from "next/image";
 import {Gif} from "../../types/ApiResponse";
 
 import styles from "./GifCard.module.scss";
+import {backgroundCardsColors} from "./types";
 
 interface Props {
   image: Gif;
   height?: string;
   width?: string;
+  color?: backgroundCardsColors;
 }
 
-const GifCard: React.FC<Props> = ({image, height, width}) => {
+const GifCard: React.FC<Props> = ({image, height, width, color = "orange-red-blue"}) => {
   return (
-    <div className={styles.card}>
+    <div className={`${styles.card} ${styles[color]}`}>
       <div className={styles.main_image}>
         <Image
           alt={image.title}
@@ -35,7 +37,7 @@ const GifCard: React.FC<Props> = ({image, height, width}) => {
               className="giphy-verified-badge css-1cps2xv"
               height="14px"
               viewBox="0 0 19 17"
-              width="16px"
+              width="19px"
             >
               <path
                 className="giphy-verified-checkmark"
