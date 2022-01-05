@@ -4,15 +4,16 @@ import Image from "next/image";
 import {Gif} from "../../types/ApiResponse";
 
 import styles from "./GifCard.module.scss";
+import {backgroundCardsColors} from "./types";
 
 interface Props {
   image: Gif;
   height?: string;
   width?: string;
-  color?: "red-blue" | "orange-red" | "blue-red" | "green-cyan";
+  color?: backgroundCardsColors;
 }
 
-const GifCard: React.FC<Props> = ({image, height, width, color = "red-blue"}) => {
+const GifCard: React.FC<Props> = ({image, height, width, color = "orange-red-blue"}) => {
   return (
     <div className={`${styles.card} ${styles[color]}`}>
       <div className={styles.main_image}>

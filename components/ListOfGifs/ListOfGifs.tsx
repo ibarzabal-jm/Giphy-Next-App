@@ -4,6 +4,7 @@ import TitleNeon from "@components/Layout/TitleNeon";
 
 import {Gif} from "../../types/ApiResponse";
 import GifCard from "../GifCard/GifCard";
+import {backgroundCardsColors} from "../GifCard/types";
 
 import styles from "./ListGifs.module.scss";
 
@@ -15,11 +16,14 @@ interface Props {
   masonry?: boolean;
 }
 
-const arrayBgGradient: Array<"red-blue" | "orange-red" | "blue-red" | "green-cyan"> = [
-  "red-blue",
+const arrayBgGradient: Array<backgroundCardsColors> = [
   "orange-red",
+  "green-violet",
+  "orange-red-blue",
+  "blue-yellow",
   "blue-red",
   "green-cyan",
+  "cyan-violet",
 ];
 
 const breakpointColumnsObj = {
