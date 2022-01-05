@@ -26,7 +26,7 @@ export const useFetchGif = ({keyword, immediate = true, limit = 12}: useFetchGif
       (data) => {
         setGifs(data);
         setStatus("resolved");
-        data.length === 0 && setIsEnd(true);
+        data.length < limit && setIsEnd(true);
       },
       (error) => {
         setStatus("rejected");
