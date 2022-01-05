@@ -86,6 +86,10 @@
           }
         }
       }
+      a:nth-child(1),
+      a:nth-child(3){
+        min-width: 127px
+      }
     }
   }
 }

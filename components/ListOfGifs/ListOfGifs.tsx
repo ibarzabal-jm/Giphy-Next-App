@@ -18,12 +18,12 @@ interface Props {
 
 const arrayBgGradient: Array<backgroundCardsColors> = [
   "orange-red",
-  "green-violet",
-  "orange-red-blue",
-  "blue-yellow",
-  "blue-red",
   "green-cyan",
+  "orange-red-blue",
   "cyan-violet",
+  "green-violet",
+  "blue-red",
+  "blue-yellow",
 ];
 
 const breakpointColumnsObj = {

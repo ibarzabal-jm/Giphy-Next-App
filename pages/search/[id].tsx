@@ -52,7 +52,12 @@ const SearchPage: NextPage<Props> = ({gifs, keyword}) => {
             <Loading />
           </div>
         )}
-        {isEnd && "Fin"}
+        {/* TODO: HACER EL FIN LINDO */}
+        {isEnd && (
+          <div className={styles.loadingContainer}>
+            <TitleNeon color="#aaffaa" tag="h4" textTransform="none" title="That's all Folks" />
+          </div>
+        )}
         <div ref={externalRef} />
       </main>
     </section>
