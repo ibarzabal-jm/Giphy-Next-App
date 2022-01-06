@@ -28,10 +28,15 @@ const GifCard: React.FC<Props> = ({image, height, width, color = "orange-red-blu
       </div>
       {image.user && (
         <div className={styles.user}>
-          <div className={styles.userimage}>
-            <Image alt={image.user.username} height={32} src={image.user?.avatar_url} width={32} />
-          </div>
           <div className={styles.username}>
+            <div className={styles.userimage}>
+              <Image
+                alt={image.user.username}
+                height={32}
+                src={image.user?.avatar_url}
+                width={32}
+              />
+            </div>
             <p>{image.user?.display_name}</p>
             <svg
               className="giphy-verified-badge css-1cps2xv"
