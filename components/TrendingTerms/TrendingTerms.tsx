@@ -1,4 +1,3 @@
-import Loading from "@components/Loading/Loading";
 import Link from "next/link";
 
 interface Props {
@@ -20,13 +19,13 @@ const TrendingTerms: React.FC<Props> = ({trendingTerms}) => {
     <ul className="trending-list">
       {trendingTerms.map((term, index) => {
         return (
-          <Trending key={term} color={colorBackground[index % colorBackground.length]}>
-            <li>
-              <Link href={`/search/${term}`}>
-                <a>{term}</a>
-              </Link>
-            </li>
-          </Trending>
+          <li key={term}>
+            <Link href={`/search/${term}`}>
+              <a>
+                <Trending color={colorBackground[index % colorBackground.length]}>{term}</Trending>
+              </a>
+            </Link>
+          </li>
         );
       })}
       <style jsx>{`
@@ -55,6 +54,7 @@ const Trending: React.FC<{color: string}> = ({color, children}) => {
             display: grid;
             place-items: center;
             text-align: center;
+            height: 100%;
             box-sizing: border-box;
             font-weight: bold;
             padding: 4px;

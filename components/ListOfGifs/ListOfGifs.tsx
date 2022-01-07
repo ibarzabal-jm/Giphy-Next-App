@@ -35,7 +35,7 @@ const breakpointColumnsObj = {
 
 const ListOfGifs: React.FC<Props> = ({keyword, gifs, className, style, masonry = true}) => {
   return (
-    <div className={`${styles.container} ${className}`} style={style}>
+    <div className={`${styles.container} ${className ? className : null}`} style={style}>
       {keyword && (
         <Link href={`/search/${keyword}`}>
           <a className={styles.link}>
