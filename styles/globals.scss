@@ -27,13 +27,9 @@ a {
 }
 
 .container{
-  max-width: 80%;
+  max-width: 85%;
   margin: 0 auto;
-
-  @media (min-width: 1024px) {
-    max-width: 85%;
-  }
-
+  
   @media (min-width: 1440px) {
     max-width: 1200px;
   }

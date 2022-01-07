@@ -68,8 +68,11 @@
     justify-content: flex-start;
     .userimage {
       margin-right: 12px;
+      flex: 0 0 32px;
     }
     .username {
+      flex: 1 1 auto;
+      overflow: hidden;
       display: flex;
       align-items: center;
       p {
@@ -80,6 +83,9 @@
         text-overflow: ellipsis;
         white-space: nowrap;
         margin-right: 6px;
+      }
+      svg{
+        flex: 0 0 19px;
       }
     }
   }

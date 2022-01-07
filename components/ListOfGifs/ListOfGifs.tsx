@@ -35,7 +35,7 @@ const breakpointColumnsObj = {
 
 const ListOfGifs: React.FC<Props> = ({keyword, gifs, className, style, masonry = true}) => {
   return (
-    <div className={`${styles.container} ${className}`} style={style}>
+    <div className={`${styles.container} ${className ? className : null}`} style={style}>
       {keyword && (
         <Link href={`/search/${keyword}`}>
           <a className={styles.link}>
@@ -63,9 +63,9 @@ const ListOfGifs: React.FC<Props> = ({keyword, gifs, className, style, masonry =
             <GifCard
               key={gif.id}
               color={arrayBgGradient[index % arrayBgGradient.length]}
-              height={masonry ? undefined : "300px"}
+              height={masonry ? undefined : "200px"}
               image={gif}
-              width={masonry ? undefined : "300px"}
+              width={masonry ? undefined : "200px"}
             />
           ))}
         </div>
