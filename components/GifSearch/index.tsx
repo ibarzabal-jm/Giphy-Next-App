@@ -55,12 +55,16 @@ const GifSearchComponent: React.FC = () => {
       )}
 
       <div className={styles.buttonsWrap}>
-        <button onClick={() => setSeparateToggle(!separateToggle)}>
-          <span>{separateToggle ? "All" : "Separate"}</span>
-        </button>
-        <button onClick={() => setMasonry(!masonry)}>
-          <span>{masonry ? "Grid" : "Masonry"}</span>
-        </button>
+        {searched.length > 0 && (
+          <button onClick={() => setMasonry(!masonry)}>
+            <span>{masonry ? "Grid" : "Masonry"}</span>
+          </button>
+        )}
+        {searched.length > 1 && (
+          <button onClick={() => setSeparateToggle(!separateToggle)}>
+            <span>{separateToggle ? "All" : "Separate"}</span>
+          </button>
+        )}
       </div>
     </section>
   );

@@ -27,7 +27,6 @@ const TitleNeon: React.FC<Props> = ({
           .title {
             text-transform: ${textTransform};
             text-align: center;
-            margin: 0 0 12px;
             font-weight: 800;
             font-size: 24px;
             color: #fee;

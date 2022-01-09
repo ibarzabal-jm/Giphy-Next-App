@@ -4,7 +4,7 @@
   margin: 0;
   .searchItem {
     text-align: center;
-    margin-bottom: 24px;
+    margin-bottom: 48px;
   }
 }
 
@@ -16,6 +16,7 @@
     margin-bottom: 24px;
     &::before {
       content: "";
+      width: 90px;
     }
   
     .buttonNeon {
@@ -29,7 +30,7 @@
 .buttonNeon {
   position: relative;
   display: inline-block;
-  padding: 12px;
+  padding: 8px;
   margin: 0 auto;
   color: #03e9f4;
   border: none;
