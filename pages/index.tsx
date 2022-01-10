@@ -37,7 +37,7 @@ const Home: NextPage<{trendingGifs: Gif[]; trendingTerms: Array<string>}> = ({
         <NeonSeparateBar />
         <section className={styles.trending}>
           <TitleNeon color="#00d0ff" tag="h2" title="Trending" />
-          <ListOfGifs gifs={trendingGifs} masonry={false} />
+          <ListOfGifs gifs={trendingGifs} masonry={false} priority={true} />
           <TrendingTerms trendingTerms={trendingTerms} />
         </section>
       </main>

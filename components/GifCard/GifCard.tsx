@@ -11,17 +11,49 @@ interface Props {
   height?: string;
   width?: string;
   color?: backgroundCardsColors;
+  priority?: boolean;
 }
 
-const GifCard: React.FC<Props> = ({image, height, width, color = "orange-red-blue"}) => {
+const shimmer = (w: string, h: string): string => `
+<svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <linearGradient id="g">
+      <stop stop-color="#111" offset="20%" />
+      <stop stop-color="#222" offset="50%" />
+      <stop stop-color="#111" offset="70%" />
+    </linearGradient>
+  </defs>
+  <rect width="${w}" height="${h}" fill="#111" />
+  <rect id="r" width="${w}" height="${h}" fill="url(#g)" />
+  <animate xlink:href="#r" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite"  />
+</svg>`;
+
+const toBase64 = (str: string) =>
+  typeof window === "undefined" ? Buffer.from(str).toString("base64") : window.btoa(str);
+
+const GifCard: React.FC<Props> = ({
+  image,
+  height,
+  width,
+  color = "orange-red-blue",
+  priority = false,
+}) => {
   return (
     <div className={`${styles.card} ${styles[color]}`}>
       <div className={styles.main_image}>
         <Image
           alt={image.title}
+          blurDataURL={`data:image/svg+xml;base64,${toBase64(
+            shimmer(
+              width ? width : image.images.downsized_medium.width,
+              height ? height : image.images.downsized_medium.height,
+            ),
+          )}`}
           height={height ? height : image.images.downsized_medium.height}
           layout="responsive"
           objectFit="cover"
+          placeholder="blur"
+          priority={priority}
           src={image.images.downsized_medium.url}
           width={width ? width : image.images.downsized_medium.width}
         />

@@ -46,7 +46,7 @@ const SearchPage: NextPage<Props> = ({gifs, keyword}) => {
     <section>
       <main className={styles.landing + " container"}>
         <TitleNeon color="#ffaaff" tag="h1" title={keyword} />
-        <ListOfGifs gifs={gifsArray} masonry={true} />
+        <ListOfGifs gifs={gifsArray} masonry={true} priority={true} />
         {status === "pending" && (
           <div className={styles.loadingContainer}>
             <Loading />

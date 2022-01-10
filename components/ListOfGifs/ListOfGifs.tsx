@@ -14,6 +14,7 @@ interface Props {
   className?: string;
   style?: React.CSSProperties;
   masonry?: boolean;
+  priority?: boolean;
 }
 
 const arrayBgGradient: Array<backgroundCardsColors> = [
@@ -33,7 +34,14 @@ const breakpointColumnsObj = {
   500: 1,
 };
 
-const ListOfGifs: React.FC<Props> = ({keyword, gifs, className, style, masonry = true}) => {
+const ListOfGifs: React.FC<Props> = ({
+  keyword,
+  gifs,
+  className,
+  style,
+  masonry = true,
+  priority = false,
+}) => {
   return (
     <div className={`${styles.container} ${className ? className : null}`} style={style}>
       {keyword && (
@@ -54,6 +62,7 @@ const ListOfGifs: React.FC<Props> = ({keyword, gifs, className, style, masonry =
               key={gif.id}
               color={arrayBgGradient[index % arrayBgGradient.length]}
               image={gif}
+              priority={priority}
             />
           ))}
         </Masonry>
@@ -65,6 +74,7 @@ const ListOfGifs: React.FC<Props> = ({keyword, gifs, className, style, masonry =
               color={arrayBgGradient[index % arrayBgGradient.length]}
               height={masonry ? undefined : "200px"}
               image={gif}
+              priority={priority}
               width={masonry ? undefined : "200px"}
             />
           ))}
