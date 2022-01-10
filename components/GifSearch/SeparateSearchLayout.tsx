@@ -12,20 +12,22 @@ interface Props {
 const SeparateSearchLayout: React.FC<Props> = ({searchs, masonry}) => {
   return (
     <ul className={styles.listSearch}>
-      {searchs.map((search) => (
-        <li key={search.keyword} className={styles.searchItem}>
-          <ListOfGifs gifs={search.gifs} keyword={search.keyword} masonry={masonry} />
-          <Link href={`/search/${search.keyword}`}>
-            <a className={styles.buttonNeon}>
-              <span />
-              <span />
-              <span />
-              <span />
-              Ver más de {search.keyword}
-            </a>
-          </Link>
-        </li>
-      ))}
+      {searchs
+        .sort((a, b) => b.date!.getTime() - a.date!.getTime())
+        .map((search) => (
+          <li key={search.keyword} className={styles.searchItem}>
+            <ListOfGifs gifs={search.gifs} keyword={search.keyword} masonry={masonry} />
+            <Link href={`/search/${search.keyword}`}>
+              <a className={styles.buttonNeon}>
+                <span />
+                <span />
+                <span />
+                <span />
+                Ver más de {search.keyword}
+              </a>
+            </Link>
+          </li>
+        ))}
     </ul>
   );
 };
