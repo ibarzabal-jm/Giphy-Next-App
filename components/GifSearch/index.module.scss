@@ -130,6 +130,14 @@
   margin-bottom: 36px;
 }
 
+@media screen and (max-width: 500px) {
+  .formSearch {
+    .quantity {
+      display: none;
+    }
+  }
+}
+
 @keyframes slide {
   to {
     background-position: 100% 200%;

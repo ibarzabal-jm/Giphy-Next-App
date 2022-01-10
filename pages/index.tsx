@@ -3,6 +3,9 @@ import Head from "next/head";
 import GifSearchComponent from "@components/GifSearch";
 import ListOfGifs from "@components/ListOfGifs/ListOfGifs";
 import TrendingTerms from "@components/TrendingTerms/TrendingTerms";
+import styles from "@styles/pages/index.module.scss";
+import TitleNeon from "@components/Layout/TitleNeon";
+import NeonSeparateBar from "@components/Layout/NeonSeparateBar";
 
 import {api} from "../api/api";
 import {Gif} from "../types/ApiResponse";
@@ -29,9 +32,11 @@ const Home: NextPage<{trendingGifs: Gif[]; trendingTerms: Array<string>}> = ({
         <link href="/favicon.ico" rel="icon" />
       </Head>
 
-      <main className="container">
+      <main className={`${styles.home} container`}>
         <GifSearchComponent />
-        <section>
+        <NeonSeparateBar />
+        <section className={styles.trending}>
+          <TitleNeon color="#00d0ff" tag="h2" title="Trending" />
           <ListOfGifs gifs={trendingGifs} masonry={false} />
           <TrendingTerms trendingTerms={trendingTerms} />
         </section>
