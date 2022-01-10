@@ -27,13 +27,12 @@ const TitleNeon: React.FC<Props> = ({
           .title {
             text-transform: ${textTransform};
             text-align: center;
-            font-weight: 800;
-            font-size: 24px;
             color: #fee;
+            font-family: "Yellowtail", cursive;
+            font-weight: 400;
+            font-size: 5rem;
             user-select: none;
-            font: 400 8vh "Yellowtail";
-            text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em ${color}, 0 0 0.5em ${color},
-              0 0 0.1em ${color}, 0 10px 3px #000;
+            text-shadow: 0 0 10px #fee, 0 0 30px ${color}, 0 10px 3px #000;
           }
           span:nth-child(2n) {
             animation: blink linear infinite 3s;
