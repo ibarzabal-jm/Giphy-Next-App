@@ -2,6 +2,7 @@ import React, {useEffect, useRef, useState} from "react";
 import {GetServerSideProps, NextPage} from "next";
 import Loading from "@components/Loading/Loading";
 import TitleNeon from "@components/Layout/TitleNeon";
+import NextHead from "@components/Layout/NextHead";
 
 import ListOfGifs from "../../components/ListOfGifs/ListOfGifs";
 import {api} from "../../api/api";
@@ -44,6 +45,10 @@ const SearchPage: NextPage<Props> = ({gifs, keyword}) => {
 
   return (
     <section>
+      <NextHead
+        desc={`Gif of ${keyword} with Juanma NeonGiphy created  `}
+        title={keyword[0].toUpperCase() + keyword.slice(1)}
+      />
       <main className={styles.landing + " container"}>
         <TitleNeon color="#ffaaff" tag="h1" title={keyword} />
         <ListOfGifs gifs={gifsArray} masonry={true} priority={true} />

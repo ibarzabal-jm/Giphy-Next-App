@@ -50,8 +50,6 @@ const GifSearchComponent: React.FC = () => {
       setSearched((prev) => [{keyword: lastSearch, gifs, date: new Date()}, ...prev]);
   }, [status]);
 
-  console.log(searched);
-
   return (
     <section className={styles.gifSearchComponent}>
       <SearchForm

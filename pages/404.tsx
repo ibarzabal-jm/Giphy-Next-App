@@ -1,9 +1,11 @@
+import NextHead from "@components/Layout/NextHead";
 import TitleNeon from "@components/Layout/TitleNeon";
 import React from "react";
 
 const Custom404 = () => {
   return (
     <div className="Container404">
+      <NextHead title="404" />
       <TitleNeon color="#0fa" tag="h1" title="404" />
       <TitleNeon color="#0fa" tag="h2" textTransform="none" title="Page not Found" />
       <style jsx>{`
