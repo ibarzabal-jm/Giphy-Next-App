@@ -33,39 +33,45 @@ const toBase64 = (str: string) =>
 
 const GifCard: React.FC<Props> = ({
   image,
-  height,
-  width,
+  height: heightProp,
+  width: widthProp,
   color = "orange-red-blue",
   priority = false,
 }) => {
+  const {
+    title,
+    images: {original: imageMain},
+    user,
+  } = image;
+
   return (
     <div className={`${styles.card} ${styles[color]}`}>
       <div className={styles.main_image}>
         <Image
-          alt={image.title}
+          alt={title}
           blurDataURL={`data:image/svg+xml;base64,${toBase64(
             shimmer(
-              width ? width : image.images.downsized_medium.width,
-              height ? height : image.images.downsized_medium.height,
+              widthProp ? widthProp : imageMain.width,
+              heightProp ? heightProp : imageMain.height,
             ),
           )}`}
-          height={height ? height : image.images.downsized_medium.height}
+          height={heightProp ? heightProp : imageMain.height}
           layout="responsive"
           objectFit="cover"
           placeholder="blur"
           priority={priority}
-          src={image.images.downsized_medium.url}
-          width={width ? width : image.images.downsized_medium.width}
+          src={imageMain.url}
+          width={widthProp ? widthProp : imageMain.width}
         />
       </div>
-      {image.user && (
+      {user && (
         <div className={styles.user}>
           <div className={styles.userimage}>
-            <Image alt={image.user.username} height={32} src={image.user?.avatar_url} width={32} />
+            <Image alt={user.username} height={32} src={user?.avatar_url} width={32} />
           </div>
           <div className={styles.username}>
-            <p>{image.user.display_name}</p>
-            {image.user.is_verified && (
+            <p>{user.display_name}</p>
+            {user.is_verified && (
               <svg
                 className="giphy-verified-badge css-1cps2xv"
                 height="14px"
