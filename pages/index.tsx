@@ -1,5 +1,5 @@
 import type {GetStaticProps, NextPage} from "next";
-import Head from "next/head";
+import NextHead from "@components/Layout/NextHead";
 import GifSearchComponent from "@components/GifSearch";
 import ListOfGifs from "@components/ListOfGifs/ListOfGifs";
 import TrendingTerms from "@components/TrendingTerms/TrendingTerms";
@@ -26,12 +26,7 @@ const Home: NextPage<{trendingGifs: Gif[]; trendingTerms: Array<string>}> = ({
 }) => {
   return (
     <div>
-      <Head>
-        <title>Giphy By Juanma</title>
-        <meta content="App Giphy creado por Juan Manuel Ibarzabal" name="description" />
-        <link href="/favicon.ico" rel="icon" />
-      </Head>
-
+      <NextHead title="Home" />
       <main className={`${styles.home} container`}>
         <GifSearchComponent />
         <NeonSeparateBar />

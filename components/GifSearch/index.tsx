@@ -19,14 +19,35 @@ const GifSearchComponent: React.FC = () => {
     immediate: false,
   });
 
+  const handleUpdateDate = (indexToChange: number) => {
+    setSearched(
+      searched.map((search, i) => {
+        if (i === indexToChange) {
+          return {
+            ...search,
+            date: new Date(),
+          };
+        }
+
+        return search;
+      }),
+    );
+  };
+
   const onSubmit = (lastSearch: string, limit: number) => {
-    if (searched.find((search) => search.keyword === lastSearch)) return;
+    let indexKeywordRepeated = searched.findIndex(
+      (search) => search.keyword.toLowerCase() == lastSearch.toLowerCase(),
+    );
+
+    if (indexKeywordRepeated !== -1) return handleUpdateDate(indexKeywordRepeated);
+
     setLastSearch(lastSearch);
     execute(lastSearch, limit);
   };
 
   useEffect(() => {
-    status === "resolved" && setSearched((prev) => [{keyword: lastSearch, gifs}, ...prev]);
+    status === "resolved" &&
+      setSearched((prev) => [{keyword: lastSearch, gifs, date: new Date()}, ...prev]);
   }, [status]);
 
   return (
