@@ -61,6 +61,7 @@ const GifCard: React.FC<Props> = ({
           placeholder="blur"
           priority={priority}
           src={imageMain.url}
+          unoptimized={true}
           width={widthProp ? widthProp : imageMain.width}
         />
       </div>
