@@ -40,7 +40,7 @@ const SearchPage: NextPage<Props> = ({gifs, keyword}) => {
   }, [isNearScreen, nextPage]);
 
   useEffect(() => {
-    setGifsArray((prev) => [...prev, ...newgifs]);
+    if (newgifs) setGifsArray((prev) => [...prev, ...newgifs]);
   }, [newgifs]);
 
   return (

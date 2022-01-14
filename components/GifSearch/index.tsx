@@ -15,7 +15,6 @@ const GifSearchComponent: React.FC = () => {
   const [separateToggle, setSeparateToggle] = useState<boolean>(true);
   const [masonry, setMasonry] = useState<boolean>(true);
   const {status, gifs, execute} = useFetchGif({
-    keyword: "",
     immediate: false,
   });
 
@@ -46,9 +45,8 @@ const GifSearchComponent: React.FC = () => {
   };
 
   useEffect(() => {
-    status === "resolved" &&
-      setSearched((prev) => [{keyword: lastSearch, gifs, date: new Date()}, ...prev]);
-  }, [status]);
+    gifs && setSearched((prev) => [{keyword: lastSearch, gifs, date: new Date()}, ...prev]);
+  }, [gifs]);
 
   return (
     <section className={styles.gifSearchComponent}>
