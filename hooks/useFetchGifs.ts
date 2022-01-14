@@ -15,9 +15,9 @@ export const useFetchGif = ({keyword, immediate = true, limit = 12}: useFetchGif
   const [gifs, setGifs] = useState<Gif[]>([]);
   const [page, setPage] = useState<number>(0);
 
-  const nextPage = () => {
+  const nextPage = useCallback(() => {
     setPage((prev) => prev + 1);
-  };
+  }, []);
 
   const execute = useCallback((keyword: string, limit = 12, offset = 0) => {
     setStatus("pending");
