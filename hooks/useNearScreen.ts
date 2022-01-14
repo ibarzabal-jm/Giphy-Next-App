@@ -8,23 +8,24 @@ interface useNearParams {
 
 export const useNearScreen = ({distance = "100px", externalRef, once = false}: useNearParams) => {
   const [isNear, setIsNear] = useState<boolean>(false);
-  const fromRef = useRef<HTMLDivElement>(null);
+  const fromRef = useRef<HTMLDivElement>();
 
   useEffect(() => {
     const element = externalRef ? externalRef.current : fromRef.current;
-    const onChange = (entries: IntersectionObserverEntry[]) => {
+    const onChange = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
       const el = entries[0];
 
       if (el.isIntersecting) {
         setIsNear(true);
         once && observer.disconnect();
       } else {
-        setIsNear(false);
+        !once && setIsNear(false);
       }
     };
+
     const observer = new IntersectionObserver(onChange, {rootMargin: distance});
 
-    element && observer.observe(element);
+    if (element) observer.observe(element);
 
     return () => observer && observer.disconnect();
   }, [distance, externalRef, once]);

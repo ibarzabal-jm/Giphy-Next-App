@@ -26,7 +26,7 @@ interface Props {
 }
 
 const SearchPage: NextPage<Props> = ({gifs, keyword}) => {
-  const [gifsArray, setGifsArray] = useState([...gifs]);
+  const [gifsArray, setGifsArray] = useState<Gif[]>(gifs);
   const externalRef = useRef(null);
   const {gifs: newgifs, nextPage, status, isEnd} = useFetchGif({keyword, immediate: false});
   const {isNearScreen} = useNearScreen({
@@ -36,8 +36,8 @@ const SearchPage: NextPage<Props> = ({gifs, keyword}) => {
   });
 
   useEffect(() => {
-    isNearScreen && nextPage();
-  }, [isNearScreen]);
+    if (isNearScreen) nextPage();
+  }, [isNearScreen, nextPage]);
 
   useEffect(() => {
     setGifsArray((prev) => [...prev, ...newgifs]);
