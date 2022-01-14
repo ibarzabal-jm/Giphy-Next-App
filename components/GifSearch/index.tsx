@@ -15,6 +15,7 @@ const GifSearchComponent: React.FC = () => {
   const [separateToggle, setSeparateToggle] = useState<boolean>(true);
   const [masonry, setMasonry] = useState<boolean>(true);
   const {status, gifs, execute} = useFetchGif({
+    keyword: "",
     immediate: false,
   });
 
