@@ -50,6 +50,21 @@
     overflow: hidden;
     border-radius: 7px;
     background-color: #111;
+    position: relative;
+
+    .favButton{
+      position: absolute;
+      top: 2%;
+      right: 2%;
+      z-index: 1;
+      border: none;
+      height: 36px;
+      width: 36px;
+      border-radius: 50%;
+      background-color: white;
+      opacity: 0;
+      cursor: pointer;
+    }
 
     img {
       transition: all 0.3s;
@@ -93,6 +108,12 @@
   &:hover {
     cursor: pointer;
     .main_image {
+      .favButton{
+        opacity: 0.5;
+        &:hover{
+          opacity: 1;
+        }
+      }
       img {
         transform: scale(1.1);
       }
@@ -104,4 +125,5 @@
       visibility: visible;
     }
   }
+
 }

@@ -1,7 +1,11 @@
 import React from "react";
 import Image from "next/image";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faHeart} from "@fortawesome/free-solid-svg-icons";
+import {faHeart as faRegHeart} from "@fortawesome/free-regular-svg-icons";
 
 import {Gif} from "../../types/ApiResponse";
+import {useFavs} from "../../hooks/useFavs";
 
 import styles from "./GifCard.module.scss";
 import {backgroundCardsColors} from "./types";
@@ -44,9 +48,18 @@ const GifCard: React.FC<Props> = ({
     user,
   } = image;
 
+  const {isFavorite, toggleFav} = useFavs();
+
   return (
     <div className={`${styles.card} ${styles[color]}`}>
       <div className={styles.main_image}>
+        <button className={styles.favButton} onClick={() => toggleFav(image)}>
+          {isFavorite(image) ? (
+            <FontAwesomeIcon aria-label="Favorite" color="#f00" icon={faHeart} size="lg" />
+          ) : (
+            <FontAwesomeIcon aria-label="NoFavorite" icon={faRegHeart} size="lg" />
+          )}
+        </button>
         <Image
           alt={title}
           blurDataURL={`data:image/svg+xml;base64,${toBase64(
