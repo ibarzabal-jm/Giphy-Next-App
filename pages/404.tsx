@@ -1,6 +1,5 @@
 import NextHead from "@components/Layout/NextHead";
 import TitleNeon from "@components/Layout/TitleNeon";
-import React from "react";
 
 const Custom404 = () => {
   return (

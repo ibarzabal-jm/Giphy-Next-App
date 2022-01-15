@@ -1,10 +1,9 @@
 import Link from "next/link";
 import Masonry from "react-masonry-css";
 import TitleNeon from "@components/Layout/TitleNeon";
-
-import {Gif} from "../../types/ApiResponse";
-import GifCard from "../GifCard/GifCard";
-import {backgroundCardsColors} from "../GifCard/types";
+import GifCard from "@components/GifCard/GifCard";
+import {backgroundCardsColors} from "@components/GifCard/types";
+import {Gif} from "@customTypes/ApiResponse";
 
 import styles from "./ListGifs.module.scss";
 
