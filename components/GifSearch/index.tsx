@@ -46,9 +46,8 @@ const GifSearchComponent: React.FC = () => {
   };
 
   useEffect(() => {
-    status === "resolved" &&
-      setSearched((prev) => [{keyword: lastSearch, gifs, date: new Date()}, ...prev]);
-  }, [status]);
+    gifs && setSearched((prev) => [{keyword: lastSearch, gifs, date: new Date()}, ...prev]);
+  }, [gifs]);
 
   return (
     <section className={styles.gifSearchComponent}>

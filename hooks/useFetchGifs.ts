@@ -12,7 +12,7 @@ interface useFetchGifsArgs {
 export const useFetchGif = ({keyword, immediate = true, limit = 12}: useFetchGifsArgs) => {
   const [status, setStatus] = useState<"idle" | "pending" | "resolved" | "rejected">("idle");
   const [isEnd, setIsEnd] = useState<boolean>(false);
-  const [gifs, setGifs] = useState<Gif[]>([]);
+  const [gifs, setGifs] = useState<Gif[] | null>(null);
   const [page, setPage] = useState<number>(0);
 
   const nextPage = useCallback(() => {

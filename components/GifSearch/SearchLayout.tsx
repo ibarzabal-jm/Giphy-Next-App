@@ -1,4 +1,5 @@
 import TitleNeon from "@components/Layout/TitleNeon";
+import ButtonNeon from "@components/Layout/ButtonNeon";
 
 import ListOfGifs from "../ListOfGifs/ListOfGifs";
 
@@ -14,13 +15,9 @@ const SearchLayout: React.FC<Props> = ({searchs, masonry}) => {
     <div className={styles.SearchLayout}>
       <header className={styles.header}>
         <TitleNeon color="#acffaf" tag="h2" title={searchs[0].keyword} />
-        <button className={styles.buttonNeon}>
-          <span />
-          <span />
-          <span />
-          <span />
+        <ButtonNeon Tag="button" className={styles.buttonNeon}>
           History
-        </button>
+        </ButtonNeon>
       </header>
       <ListOfGifs gifs={searchs.flatMap((search) => search.gifs)} masonry={masonry} />
     </div>
