@@ -1,3 +1,4 @@
+import ButtonNeon from "@components/Layout/ButtonNeon";
 import ListOfGifs from "@components/ListOfGifs/ListOfGifs";
 import Link from "next/link";
 
@@ -17,14 +18,10 @@ const SeparateSearchLayout: React.FC<Props> = ({searchs, masonry}) => {
         .map((search) => (
           <li key={search.keyword} className={styles.searchItem}>
             <ListOfGifs gifs={search.gifs} keyword={search.keyword} masonry={masonry} />
-            <Link href={`/search/${search.keyword}`}>
-              <a className={styles.buttonNeon}>
-                <span />
-                <span />
-                <span />
-                <span />
+            <Link passHref href={`/search/${search.keyword}`}>
+              <ButtonNeon Tag="a" className={styles.buttonNeon}>
                 Ver más de {search.keyword}
-              </a>
+              </ButtonNeon>
             </Link>
           </li>
         ))}
