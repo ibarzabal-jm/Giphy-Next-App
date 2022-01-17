@@ -1,6 +1,8 @@
-import NextHead from "@components/Layout/NextHead";
-import {api} from "api/api";
 import {GetServerSideProps, NextPage} from "next/types";
+import NextHead from "@components/Layout/NextHead";
+import TitleNeon from "@components/Layout/TitleNeon";
+import {api} from "api/api";
+import Image from "next/image";
 
 import {Gif} from "../types/ApiResponse";
 
@@ -26,12 +28,26 @@ export const getServerSideProps: GetServerSideProps = async ({params}) => {
 };
 
 const GifLandingPage: NextPage<{gif: Gif}> = ({gif}) => {
-  const {id, images, title, username, bitly_gif_url} = gif;
+  const {id, images, title, username} = gif;
 
   return (
     <div>
       <NextHead title={title} />
-      <main className="container">{title}</main>
+      <aside>
+        {gif.source}
+        {gif.source_post_url}
+        {gif.user?.avatar_url}
+      </aside>
+      <main className="container">
+        <TitleNeon color="#ffaaff" tag="h1" title={title} />
+        <Image
+          unoptimized
+          alt={title}
+          height={images.original.height}
+          src={images.original.webp}
+          width={images.original.width}
+        />
+      </main>
     </div>
   );
 };

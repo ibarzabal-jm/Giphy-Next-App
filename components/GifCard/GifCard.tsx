@@ -85,7 +85,13 @@ const GifCard: React.FC<Props> = ({
         {user && (
           <div className={styles.user}>
             <div className={styles.userimage}>
-              <Image alt={user.username} height={32} src={user?.avatar_url} width={32} />
+              <Image
+                unoptimized
+                alt={user.username}
+                height={32}
+                src={user?.avatar_url}
+                width={32}
+              />
             </div>
             <div className={styles.username}>
               <p>{user.display_name}</p>
