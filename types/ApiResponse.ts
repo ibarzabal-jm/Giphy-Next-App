@@ -4,6 +4,11 @@ export interface ApiResponse {
   meta: Meta;
 }
 
+export interface SingleGifResponse {
+  data: Gif;
+  meta: Meta;
+}
+
 export interface Gif {
   type: string;
   id: string;

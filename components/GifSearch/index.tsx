@@ -47,6 +47,7 @@ const GifSearchComponent: React.FC = () => {
 
   useEffect(() => {
     gifs && setSearched((prev) => [{keyword: lastSearch, gifs, date: new Date()}, ...prev]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gifs]);
 
   return (
