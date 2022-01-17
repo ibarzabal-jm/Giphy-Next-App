@@ -8,8 +8,20 @@ export const getServerSideProps: GetServerSideProps = async ({params}) => {
   const id = params?.id as string;
   const gif = await api.getSingleGif(id);
 
+  // redirect to 404 if gif not found
+  if (!gif.id) {
+    return {
+      redirect: {
+        destination: "/404",
+        permanent: false,
+      },
+    };
+  }
+
   return {
-    props: {gif},
+    props: {
+      gif,
+    },
   };
 };
 
