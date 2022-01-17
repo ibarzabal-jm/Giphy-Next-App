@@ -2,9 +2,10 @@ import React from "react";
 
 interface Props {
   title: string;
-  tag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+  tag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "span";
   color?: string;
   textTransform?: "uppercase" | "lowercase" | "capitalize" | "none";
+  size?: string;
 }
 
 const TitleNeon: React.FC<Props> = ({
@@ -12,6 +13,7 @@ const TitleNeon: React.FC<Props> = ({
   tag,
   color = "#ff4444",
   textTransform = "capitalize",
+  size = "5rem",
 }) => {
   const Tag = tag as keyof JSX.IntrinsicElements;
 
@@ -30,7 +32,7 @@ const TitleNeon: React.FC<Props> = ({
             color: #fee;
             font-family: "Yellowtail", cursive;
             font-weight: 400;
-            font-size: 5rem;
+            font-size: ${size};
             user-select: none;
             text-shadow: 0 0 10px #fee, 0 0 30px ${color}, 0 10px 3px #000;
           }

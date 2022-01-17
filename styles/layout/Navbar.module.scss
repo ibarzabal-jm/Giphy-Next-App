@@ -9,10 +9,15 @@
   nav {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     padding: 6px;
 
-    a {
+    &::before{
+      content: "";
+      width: 20px;
+    }
+
+    .title {
       color: $orange;
       font-weight: 900;
       font-size: 32px;
@@ -26,11 +31,50 @@
         animation: shine 2s linear infinite;
       }
     }
+
+    .favs{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+
+      svg {
+        display: block;
+        height: 20px;
+        overflow: visible;
+        margin: 4px 0 0 10px;
+
+        transition: transform 0.3s;
+        use {
+          stroke: red;
+          opacity: 0;
+          animation: pulsing 1000ms ease-out infinite;
+        }
+      }
+      &:hover {
+        cursor: pointer;
+        color: $cyan;
+        svg {
+          transform: scale(1.5);
+        }
+      }
+    }
   }
 }
 
 @keyframes shine {
   to {
     background-position: 200% center;
+  }
+}
+
+@keyframes pulsing {
+  from {
+    opacity: 0.5;
+    stroke-width: 0;
+  }
+  to {
+    opacity: 0;
+    stroke-width: 12px;
   }
 }
