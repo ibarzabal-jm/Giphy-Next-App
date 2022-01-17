@@ -1,4 +1,4 @@
-import {ApiResponse, Gif} from "../types/ApiResponse";
+import {ApiResponse, Gif, SingleGifResponse} from "../types/ApiResponse";
 
 const APIKEY = "ePoEafBUZMXHRZ7n5TS0zC8ICn2wn0kC";
 
@@ -21,7 +21,7 @@ export const api = {
     return await fetch(`https://api.giphy.com/v1/gifs/${id}?api_key=${APIKEY}&rating=g&lang=es
     `)
       .then((res) => res.json())
-      .then((response: ApiResponse) => response.data[0]);
+      .then((response: SingleGifResponse) => response.data);
   },
 
   getRandomGif: async (): Promise<Gif> => {
