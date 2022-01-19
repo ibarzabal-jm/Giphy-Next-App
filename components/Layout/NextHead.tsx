@@ -37,7 +37,7 @@ const NextHead: React.FC<Props> = ({
       <meta content={url} name="twitter:url" />
       <meta content={desc} name="twitter:description" />
       <meta content="@JuanmaPiojoso" name="twitter:creator" />
-      <meta content={`https://juanma-neongiphy.vercel.app/${image}`} name="twitter:image" />
+      <meta content={`https://juanma-neongiphy.vercel.app/${image}`} name="twitter:image:src" />
     </Head>
   );
 };
