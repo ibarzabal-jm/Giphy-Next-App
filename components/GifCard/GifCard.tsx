@@ -54,16 +54,16 @@ const GifCard: React.FC<Props> = ({
   const {isFavorite, toggleFav} = useFavs();
 
   return (
-    <Link href={`/${id}`}>
-      <a className={`${styles.card} ${styles[color]}`}>
-        <div className={styles.main_image}>
-          <button className={styles.favButton} onClick={() => toggleFav(image)}>
-            {isFavorite(image) ? (
-              <FontAwesomeIcon aria-label="Fav" color="#f00" icon={faHeart} size="lg" />
-            ) : (
-              <FontAwesomeIcon aria-label="NoFavorite" icon={faRegHeart} size="lg" />
-            )}
-          </button>
+    <div className={`${styles.card} ${styles[color]}`}>
+      <button className={styles.favButton} onClick={() => toggleFav(image)}>
+        {isFavorite(image) ? (
+          <FontAwesomeIcon aria-label="Fav" color="#f00" icon={faHeart} size="lg" />
+        ) : (
+          <FontAwesomeIcon aria-label="NoFavorite" icon={faRegHeart} size="lg" />
+        )}
+      </button>
+      <Link href={`/${id}`}>
+        <a className={styles.main_image}>
           <Image
             alt={title}
             blurDataURL={`data:image/svg+xml;base64,${toBase64(
@@ -81,26 +81,21 @@ const GifCard: React.FC<Props> = ({
             unoptimized={true}
             width={widthProp ? widthProp : imageMain.width}
           />
-        </div>
-        {user && (
-          <div className={styles.user}>
-            <div className={styles.userimage}>
-              <Image
-                unoptimized
-                alt={user.username}
-                height={32}
-                src={user?.avatar_url}
-                width={32}
-              />
-            </div>
-            <div className={styles.username}>
-              <p>{user.display_name}</p>
-              {user.is_verified && <CheckSvg />}
-            </div>
+        </a>
+      </Link>
+
+      {user && (
+        <div className={styles.user}>
+          <div className={styles.userimage}>
+            <Image unoptimized alt={user.username} height={32} src={user?.avatar_url} width={32} />
           </div>
-        )}
-      </a>
-    </Link>
+          <div className={styles.username}>
+            <p>{user.display_name}</p>
+            {user.is_verified && <CheckSvg />}
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
 
