@@ -34,7 +34,7 @@ const SearchForm: React.FC<Props> = ({onSubmit, ...props}) => {
     <form className={props.classForm} onSubmit={handleSubmit}>
       <input
         className={props.classSearch}
-        placeholder="Searching Gif..."
+        placeholder="Search all the GIFs..."
         type="text"
         value={keyword}
         onChange={handleSetKeyword}
@@ -47,7 +47,7 @@ const SearchForm: React.FC<Props> = ({onSubmit, ...props}) => {
         onChange={handleLimitChange}
       />
       <button className={props.classButtonSearch} type="submit">
-        Buscar
+        Search
       </button>
     </form>
   );
