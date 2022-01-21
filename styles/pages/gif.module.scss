@@ -12,10 +12,35 @@
     gap: 12px;
 
     .mainImage {
+      display: flex;
+      align-items: center;
       max-width: 500px;
       width: 100%;
       margin: auto;
       position: relative;
+      border-radius: 8px;
+      padding: 3px;
+      cursor: pointer;
+      background: radial-gradient(circle at 0 0, hsl(27deg 93% 60%), transparent),
+      radial-gradient(circle at 100% 0, #00a6ff, transparent),
+      radial-gradient(circle at 0 100%, #ff0056, transparent),
+      radial-gradient(circle at 100% 100%, #6500ff, transparent);
+      &::before {
+        content: "";
+        background: inherit;
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        width: calc(100% + 4px);
+        height: calc(100% + 4px);
+        filter: blur(30px);
+        border-radius: 12px;
+      }
+      img{
+        background: gray;
+        border-radius: 7px;
+        overflow: hidden;
+      }
       .favButton {
         position: absolute;
         top: 4%;
@@ -27,6 +52,11 @@
         border-radius: 50%;
         background-color: #ffffff;
         cursor: pointer;
+      }
+      &:hover{
+        &::before{
+          filter: blur(6px);
+        }
       }
     }
   }
