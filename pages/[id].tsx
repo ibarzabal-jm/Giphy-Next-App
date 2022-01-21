@@ -46,7 +46,7 @@ const GifLandingPage: NextPage<{
   relatedGifs: Gif[];
   suggestions: string[];
 }> = ({gif, relatedGifs, suggestions}) => {
-  const {images, title, user} = gif;
+  const {images, title} = gif;
 
   const {isFavorite, toggleFav} = useFavs();
 
