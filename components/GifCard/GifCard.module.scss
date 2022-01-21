@@ -26,7 +26,7 @@
   &.blue-yellow {
     background: linear-gradient(45deg, #85ffbd 0%, #fffb7d 100%);
   }
-  &.green-violet{
+  &.green-violet {
     background: linear-gradient(135deg, #59c173 50%, #a17fe0, #5d26c1);
   }
   &.cyan-violet {
@@ -48,24 +48,11 @@
     border-radius: 12px;
   }
   .main_image {
+    display: block;
     overflow: hidden;
     border-radius: 7px;
     background-color: #111;
     position: relative;
-
-    .favButton{
-      position: absolute;
-      top: 2%;
-      right: 2%;
-      z-index: 1;
-      border: none;
-      height: 36px;
-      width: 36px;
-      border-radius: 50%;
-      background-color: white;
-      opacity: 0;
-      cursor: pointer;
-    }
 
     img {
       transition: all 0.3s;
@@ -100,21 +87,31 @@
         white-space: nowrap;
         margin-right: 6px;
       }
-      svg{
+      svg {
         flex: 0 0 19px;
       }
     }
   }
 
+  .favButton{
+    position: absolute;
+    top: 4%;
+    right: 4%;
+    z-index: 1;
+    border: none;
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    transform: translate(0, -10px);
+    opacity: 0;
+    transition: all 0.3s ease-out;
+    cursor: pointer;
+  }
+
   &:hover {
     cursor: pointer;
     .main_image {
-      .favButton{
-        opacity: 0.5;
-        &:hover{
-          opacity: 1;
-        }
-      }
       img {
         transform: scale(1.1);
       }
@@ -125,6 +122,12 @@
     .user {
       visibility: visible;
     }
+    .favButton {
+      transform: translate(0, 0%);
+      opacity: 0.5;
+      &:hover {
+        opacity: 1;
+      }
+    }
   }
-
 }

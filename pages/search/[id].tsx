@@ -46,7 +46,7 @@ const SearchPage: NextPage<Props> = ({gifs, keyword}) => {
   return (
     <section>
       <NextHead
-        desc={`Gif of ${keyword} with Juanma NeonGiphy created  `}
+        desc={`Gif of ${keyword} with Juanma NeonGiphy App`}
         title={keyword[0].toUpperCase() + keyword.slice(1)}
       />
       <main className={styles.landing + " container"}>
