@@ -77,7 +77,7 @@ const GifCard: React.FC<Props> = ({
             objectFit="cover"
             placeholder="blur"
             priority={priority}
-            src={imageMain.url}
+            src={imageMain.webp || imageMain.url}
             unoptimized={true}
             width={widthProp ? widthProp : imageMain.width}
           />

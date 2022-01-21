@@ -4,8 +4,14 @@ import TitleNeon from "@components/Layout/TitleNeon";
 import {api} from "api/api";
 import Image from "next/image";
 import ListOfGifs from "@components/ListOfGifs/ListOfGifs";
+import styles from "@styles/pages/gif.module.scss";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faHeart} from "@fortawesome/free-solid-svg-icons";
+import {faHeart as faRegHeart} from "@fortawesome/free-regular-svg-icons";
 
 import {Gif} from "../types/ApiResponse";
+import {useFavs} from "../hooks/useFavs";
+import TrendingTerms from "../components/TrendingTerms/TrendingTerms";
 
 export const getServerSideProps: GetServerSideProps = async ({params}) => {
   const id = params?.id as string;
@@ -42,52 +48,37 @@ const GifLandingPage: NextPage<{
 }> = ({gif, relatedGifs, suggestions}) => {
   const {images, title, user} = gif;
 
+  const {isFavorite, toggleFav} = useFavs();
+
   return (
     <div>
       <NextHead title={title} />
-      <div className="container">
-        <aside>
-          {user ? (
-            <a className="user" href={user.profile_url}>
-              <Image alt={user.username} height={50} src={user.avatar_url} width={50} />
-              <div>
-                @{user.username}
-                {user.is_verified && "verificado"}
-              </div>
-              <div>{user.description}</div>
-            </a>
-          ) : null}
-          <div>
-            <p>{gif.source_post_url}</p>
-            <p>Rating: {gif.rating}</p>
-            <p>Source:{gif.source}</p>
-            <p>Imported at : {gif.import_datetime}</p>
-          </div>
-        </aside>
-
-        <main>
-          <div>
-            <TitleNeon color="#ffaaff" size="48px" tag="h1" textTransform="none" title={title} />
+      <div className={styles.landing + " container"}>
+        <main className={styles.mainGif}>
+          <TitleNeon color="#ffaaff" size="3.5rem" tag="h1" textTransform="none" title={title} />
+          <div className={styles.mainImage}>
             <Image
               unoptimized
               alt={title}
               height={images.original.height}
               src={images.original.webp}
-              width={images.original.width}
+              width={500}
             />
-          </div>
-          <div className="suggestions">
-            {suggestions.map((suggest) => (
-              <a key={suggest} href={`/search/${suggest}`}>
-                #{suggest}
-              </a>
-            ))}
-          </div>
-          <div>
-            <TitleNeon size="32px" tag="h3" title="Related Gif" />
-            <ListOfGifs gifs={relatedGifs} masonry={false} />
+            <button className={styles.favButton} onClick={() => toggleFav(gif)}>
+              {isFavorite(gif) ? (
+                <FontAwesomeIcon aria-label="Fav" color="#f00" icon={faHeart} size="lg" />
+              ) : (
+                <FontAwesomeIcon aria-label="NoFavorite" icon={faRegHeart} size="lg" />
+              )}
+            </button>
           </div>
         </main>
+
+        <TrendingTerms trendingTerms={suggestions} />
+        <div className="related">
+          <TitleNeon size="3rem" tag="h3" title="Related Gif" />
+          <ListOfGifs gifs={relatedGifs} masonry={false} />
+        </div>
       </div>
     </div>
   );
