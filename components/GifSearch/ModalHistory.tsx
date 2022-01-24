@@ -1,3 +1,6 @@
+import TitleNeon from "@components/Layout/TitleNeon";
+import {faTimesCircle} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import React from "react";
 
@@ -14,14 +17,18 @@ const ModalHistory = ({
     <div className="modal-background">
       <div className="modal-container">
         <button className="closemodal" onClick={closeModal}>
-          X
+          <FontAwesomeIcon color="#00d0ff" icon={faTimesCircle} />
         </button>
-        <h2 className="modal-title">History</h2>
+        <div className="modal-header">
+          <TitleNeon color="#00d0ff" tag="h2" title="history" />
+        </div>
         <ul className="modal-list">
           {history.map((search) => (
             <li key={search}>
               <Link as={`/search/${search}`} href="/search/[keyword]">
-                <a className="modal-links">{search}</a>
+                <a className="modal-links">
+                  <TitleNeon align="left" size="3rem" tag="h3" title={search} />
+                </a>
               </Link>
             </li>
           ))}
@@ -50,14 +57,13 @@ const ModalHistory = ({
             left: 50%;
             transform: translate(-50%, -50%);
             border-radius: 5px;
-            padding: 20px;
+            padding: 48px;
             background-color: #04293a;
-            height: calc(100% - 40px);
           }
           .closemodal {
             position: absolute;
-            top: 0;
-            right: 0;
+            top: 2%;
+            right: 2%;
             border: none;
             background-color: transparent;
             color: #fff;
@@ -65,57 +71,16 @@ const ModalHistory = ({
             font-weight: bold;
             cursor: pointer;
           }
-          .modal-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #fff;
-            text-align: center;
+          .modal-header {
+            margin-bottom: 48px;
           }
           .modal-list {
             list-style: none;
             padding: 0;
             margin: 0;
-          }
-          .modal-links {
-            color: #fff;
-            text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: 0.5s;
-            -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
-          }
-          .modal-links:hover,
-          .modal-links:focus,
-          .modal-links:active {
-            background: #bc13fe;
-            color: #050801;
-            box-shadow: 0 0 5px #bc13fe, 0 0 25px #bc13fe, 0 0 50px #bc13fe, 0 0 200px #bc13fe;
-          }
-          @keyframes animate1 {
-            0% {
-              transform: translateY(0);
-            }
-            50% {
-              transform: translateY(-100px);
-            }
-            100% {
-              transform: translateY(0);
-            }
-          }
-          @keyframes animate2 {
-            0% {
-              transform: translateX(0);
-            }
-
-            50% {
-              transform: translateX(-100px);
-            }
-
-            100% {
-              transform: translateX(0);
-            }
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            width: 100%;
           }
         `}
       </style>

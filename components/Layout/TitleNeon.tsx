@@ -6,6 +6,7 @@ interface Props {
   color?: string;
   textTransform?: "uppercase" | "lowercase" | "capitalize" | "none";
   size?: string;
+  align?: "left" | "center" | "right";
 }
 
 const TitleNeon: React.FC<Props> = ({
@@ -14,6 +15,7 @@ const TitleNeon: React.FC<Props> = ({
   color = "#ff4444",
   textTransform = "capitalize",
   size = "5rem",
+  align = "center",
 }) => {
   const Tag = tag as keyof JSX.IntrinsicElements;
 
@@ -28,7 +30,7 @@ const TitleNeon: React.FC<Props> = ({
         {`
           .title {
             text-transform: ${textTransform};
-            text-align: center;
+            text-align: ${align};
             color: #fee;
             font-family: "Yellowtail", cursive;
             font-weight: 400;
