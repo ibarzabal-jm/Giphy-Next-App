@@ -21,7 +21,7 @@ const SearchLayout: React.FC<Props> = ({searchs, masonry}) => {
     <div className={styles.SearchLayout}>
       <header className={styles.header}>
         <TitleNeon color="#acffaf" tag="h2" title={searchs[0].keyword} />
-        <ButtonNeon Tag="button" className={styles.buttonNeon} onClick={() => setOpenModal(true)}>
+        <ButtonNeon className={styles.buttonNeon} tag="button" onClick={() => setOpenModal(true)}>
           History
         </ButtonNeon>
       </header>
