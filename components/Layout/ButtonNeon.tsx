@@ -5,11 +5,19 @@ interface Props {
   children: React.ReactNode;
   className?: string;
   color?: string;
+  onClick?: () => void;
 }
 
-const ButtonNeon: React.FC<Props> = ({Tag, children, className, color = "#03e9f4", ...props}) => {
+const ButtonNeon: React.FC<Props> = ({
+  Tag,
+  children,
+  className,
+  color = "#03e9f4",
+  onClick,
+  ...props
+}) => {
   return (
-    <Tag className={`neonButton ${className}`} {...props}>
+    <Tag className={`neonButton ${className}`} onClick={onClick} {...props}>
       <span />
       <span />
       <span />
