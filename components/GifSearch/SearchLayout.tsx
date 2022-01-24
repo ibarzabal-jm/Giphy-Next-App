@@ -15,8 +15,6 @@ interface Props {
 const SearchLayout: React.FC<Props> = ({searchs, masonry}) => {
   const [openModal, setOpenModal] = useState(false);
 
-  console.log(searchs);
-
   return (
     <div className={styles.SearchLayout}>
       <header className={styles.header}>
@@ -26,7 +24,11 @@ const SearchLayout: React.FC<Props> = ({searchs, masonry}) => {
         </ButtonNeon>
       </header>
       <ListOfGifs gifs={searchs.flatMap((search) => search.gifs)} masonry={masonry} />
-      {/* <ModalHistory open={openModal} history={searchs.} onClose={() => setOpenModal(false)} /> */}
+      <ModalHistory
+        closeModal={() => setOpenModal(false)}
+        history={searchs.flatMap((search) => search.keyword)}
+        isOpen={openModal}
+      />
     </div>
   );
 };

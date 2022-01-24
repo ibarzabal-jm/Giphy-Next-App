@@ -1,23 +1,19 @@
-import React, {RefObject} from "react";
+import React from "react";
 
 interface Props {
-  tag: "a" | "button";
+  tag: "button" | "a";
   children: React.ReactNode;
   className?: string;
   color?: string;
   onClick?: () => void;
-  href?: string;
 }
 
-const ButtonNeon = React.forwardRef<HTMLAnchorElement | HTMLButtonElement, Props>(
-  ({tag, children, className, color = "#03e9f4", onClick, href, ...props}, ref) => {
-    const Tag = tag as "a" | "button";
-
+const ButtonNeon = React.forwardRef<HTMLElement, Props>(
+  ({tag: TagWrapper, children, className, color = "#03e9f4", onClick, ...props}, ref) => {
     return (
-      <Tag
+      <TagWrapper
         ref={ref as any}
         className={`neonButton ${className}`}
-        href={href}
         onClick={onClick}
         {...props}
       >
@@ -135,7 +131,7 @@ const ButtonNeon = React.forwardRef<HTMLAnchorElement | HTMLButtonElement, Props
             }
           `}
         </style>
-      </Tag>
+      </TagWrapper>
     );
   },
 );
