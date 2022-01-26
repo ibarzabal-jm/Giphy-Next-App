@@ -1,8 +1,10 @@
-import TitleNeon from "@components/Layout/TitleNeon";
-import {faTimesCircle} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import Link from "next/link";
 import React from "react";
+import Link from "next/link";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faTimesCircle} from "@fortawesome/free-solid-svg-icons";
+import TitleNeon from "@components/Layout/TitleNeon";
+
+import useOutside from "../../hooks/useOutside";
 
 const ModalHistory = ({
   history,
@@ -13,11 +15,13 @@ const ModalHistory = ({
   isOpen: boolean;
   closeModal: () => void;
 }) => {
+  const domeNode = useOutside(closeModal);
+
   return (
     <div className="modal-background">
-      <div className="modal-container">
+      <div ref={domeNode} className="modal-container">
         <button className="closemodal" onClick={closeModal}>
-          <FontAwesomeIcon color="#00d0ff" icon={faTimesCircle} />
+          <FontAwesomeIcon color="#bc13fe" icon={faTimesCircle} />
         </button>
         <div className="modal-header">
           <TitleNeon color="#00d0ff" tag="h2" title="history" />
@@ -58,7 +62,9 @@ const ModalHistory = ({
             transform: translate(-50%, -50%);
             border-radius: 5px;
             padding: 48px;
+            width: 520px;
             background-color: #04293a;
+            animation: fadein 0.5s, pulsate 1.5s infinite;
           }
           .closemodal {
             position: absolute;
@@ -80,7 +86,32 @@ const ModalHistory = ({
             margin: 0;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
+            gap: 6px;
             width: 100%;
+          }
+          .modal-container:hover {
+            animation-play-state: paused;
+          }
+          @keyframes fadein {
+            from {
+              opacity: 0;
+            }
+            to {
+              opacity: 1;
+            }
+          }
+          @keyframes pulsate {
+            0% {
+              box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #bc13fe, 0 0 0.8rem #bc13fe,
+                0 0 2.8rem #bc13fe, inset 0 0 1.3rem #bc13fe;
+            }
+            50% {
+              box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #bc13fe, 0 0 0.8rem #bc13fe;
+            }
+            100% {
+              box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #bc13fe, 0 0 0.8rem #bc13fe,
+                0 0 2.8rem #bc13fe, inset 0 0 1.3rem #bc13fe;
+            }
           }
         `}
       </style>
