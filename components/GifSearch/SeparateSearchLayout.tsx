@@ -19,7 +19,7 @@ const SeparateSearchLayout: React.FC<Props> = ({searchs, masonry}) => {
           <li key={search.keyword} className={styles.searchItem}>
             <ListOfGifs gifs={search.gifs} keyword={search.keyword} masonry={masonry} />
             <Link passHref href={`/search/${search.keyword}`}>
-              <ButtonNeon Tag="a" className={styles.buttonNeon}>
+              <ButtonNeon className={styles.buttonNeon} tag="a">
                 See more of {search.keyword}
               </ButtonNeon>
             </Link>
